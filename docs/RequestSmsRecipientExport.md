@@ -1,4 +1,4 @@
-# SibApiV3Sdk.RequestSmsRecipientExport
+# SendinBlueApi.RequestSmsRecipientExport
 
 ## Properties
 Name | Type | Description | Notes

@@ -1,4 +1,4 @@
-# SibApiV3Sdk.SendSms
+# SendinBlueApi.SendSms
 
 ## Properties
 Name | Type | Description | Notes

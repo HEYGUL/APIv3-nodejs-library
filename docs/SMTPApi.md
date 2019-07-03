@@ -1,63 +1,62 @@
-# SibApiV3Sdk.SMTPApi
+# SendinBlueApi.SMTPApi
 
 All URIs are relative to *https://api.sendinblue.com/v3*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createSmtpTemplate**](SMTPApi.md#createSmtpTemplate) | **POST** /smtp/templates | Create an smtp template
+[**createSmtpTemplate**](SMTPApi.md#createSmtpTemplate) | **POST** /smtp/templates | Create a transactional email template
 [**deleteHardbounces**](SMTPApi.md#deleteHardbounces) | **POST** /smtp/deleteHardbounces | Delete hardbounces
-[**deleteSmtpTemplate**](SMTPApi.md#deleteSmtpTemplate) | **DELETE** /smtp/templates/{templateId} | Delete an inactive smtp template
-[**getAggregatedSmtpReport**](SMTPApi.md#getAggregatedSmtpReport) | **GET** /smtp/statistics/aggregatedReport | Get your SMTP activity aggregated over a period of time
-[**getEmailEventReport**](SMTPApi.md#getEmailEventReport) | **GET** /smtp/statistics/events | Get all your SMTP activity (unaggregated events)
-[**getSmtpReport**](SMTPApi.md#getSmtpReport) | **GET** /smtp/statistics/reports | Get your SMTP activity aggregated per day
+[**deleteSmtpTemplate**](SMTPApi.md#deleteSmtpTemplate) | **DELETE** /smtp/templates/{templateId} | Delete an inactive transactional email template
+[**getAggregatedSmtpReport**](SMTPApi.md#getAggregatedSmtpReport) | **GET** /smtp/statistics/aggregatedReport | Get your transactional email activity aggregated over a period of time
+[**getEmailEventReport**](SMTPApi.md#getEmailEventReport) | **GET** /smtp/statistics/events | Get all your transactional email activity (unaggregated events)
+[**getSmtpReport**](SMTPApi.md#getSmtpReport) | **GET** /smtp/statistics/reports | Get your transactional email activity aggregated per day
 [**getSmtpTemplate**](SMTPApi.md#getSmtpTemplate) | **GET** /smtp/templates/{templateId} | Returns the template informations
-[**getSmtpTemplates**](SMTPApi.md#getSmtpTemplates) | **GET** /smtp/templates | Get the list of SMTP templates
+[**getSmtpTemplates**](SMTPApi.md#getSmtpTemplates) | **GET** /smtp/templates | Get the list of transactional email templates
+[**getTransacEmailContent**](SMTPApi.md#getTransacEmailContent) | **GET** /smtp/emails/{uuid} | Get the personalized content of a sent transactional email
+[**getTransacEmailsList**](SMTPApi.md#getTransacEmailsList) | **GET** /smtp/emails | Get the list of transactional emails on the basis of allowed filters
 [**sendTemplate**](SMTPApi.md#sendTemplate) | **POST** /smtp/templates/{templateId}/send | Send a template
 [**sendTestTemplate**](SMTPApi.md#sendTestTemplate) | **POST** /smtp/templates/{templateId}/sendTest | Send a template to your test list
 [**sendTransacEmail**](SMTPApi.md#sendTransacEmail) | **POST** /smtp/email | Send a transactional email
-[**updateSmtpTemplate**](SMTPApi.md#updateSmtpTemplate) | **PUT** /smtp/templates/{templateId} | Updates an smtp templates
+[**updateSmtpTemplate**](SMTPApi.md#updateSmtpTemplate) | **PUT** /smtp/templates/{templateId} | Updates a transactional email templates
 
 
 <a name="createSmtpTemplate"></a>
 # **createSmtpTemplate**
 > CreateModel createSmtpTemplate(smtpTemplate)
 
-Create an smtp template
+Create a transactional email template
 
 ### Example
 ```javascript
-var SibApiV3Sdk = require('sib-api-v3-sdk');
-var defaultClient = SibApiV3Sdk.ApiClient.instance;
+var SendinBlueApi = require('sendin_blue_api');
+var defaultClient = SendinBlueApi.ApiClient.instance;
 
 // Configure API key authorization: api-key
-var apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = 'YOUR API KEY';
+var api-key = defaultClient.authentications['api-key'];
+api-key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apikey.apiKeyPrefix = 'Token';
+//api-key.apiKeyPrefix = 'Token';
 
-// Configure API key authorization: partner-key
-var partnerKey = defaultClient.authentications['partner-key'];
-partnerKey.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//partnerKey.apiKeyPrefix = 'Token';
+var apiInstance = new SendinBlueApi.SMTPApi();
 
-var apiInstance = new SibApiV3Sdk.SMTPApi();
+var smtpTemplate = new SendinBlueApi.CreateSmtpTemplate(); // CreateSmtpTemplate | values to update in transactional email template
 
-var smtpTemplate = new SibApiV3Sdk.CreateSmtpTemplate(); // CreateSmtpTemplate | values to update in smtp template
 
-apiInstance.createSmtpTemplate(smtpTemplate).then(function(data) {
-  console.log('API called successfully. Returned data: ' + data);
-}, function(error) {
-  console.error(error);
-});
-
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.createSmtpTemplate(smtpTemplate, callback);
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **smtpTemplate** | [**CreateSmtpTemplate**](CreateSmtpTemplate.md)| values to update in smtp template | 
+ **smtpTemplate** | [**CreateSmtpTemplate**](CreateSmtpTemplate.md)| values to update in transactional email template | 
 
 ### Return type
 
@@ -65,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+[api-key](../README.md#api-key)
 
 ### HTTP request headers
 
@@ -82,32 +81,29 @@ Delete hardbounces. To use carefully (e.g. in case of temporary ISP failures)
 
 ### Example
 ```javascript
-var SibApiV3Sdk = require('sib-api-v3-sdk');
-var defaultClient = SibApiV3Sdk.ApiClient.instance;
+var SendinBlueApi = require('sendin_blue_api');
+var defaultClient = SendinBlueApi.ApiClient.instance;
 
 // Configure API key authorization: api-key
-var apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = 'YOUR API KEY';
+var api-key = defaultClient.authentications['api-key'];
+api-key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apikey.apiKeyPrefix = 'Token';
+//api-key.apiKeyPrefix = 'Token';
 
-// Configure API key authorization: partner-key
-var partnerKey = defaultClient.authentications['partner-key'];
-partnerKey.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//partnerKey.apiKeyPrefix = 'Token';
-
-var apiInstance = new SibApiV3Sdk.SMTPApi();
+var apiInstance = new SendinBlueApi.SMTPApi();
 
 var opts = { 
-  'deleteHardbounces': new SibApiV3Sdk.DeleteHardbounces() // DeleteHardbounces | values to delete hardbounces
+  'deleteHardbounces': new SendinBlueApi.DeleteHardbounces() // DeleteHardbounces | values to delete hardbounces
 };
-apiInstance.deleteHardbounces(opts).then(function() {
-  console.log('API called successfully.');
-}, function(error) {
-  console.error(error);
-});
 
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+apiInstance.deleteHardbounces(opts, callback);
 ```
 
 ### Parameters
@@ -122,7 +118,7 @@ null (empty response body)
 
 ### Authorization
 
-[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+[api-key](../README.md#api-key)
 
 ### HTTP request headers
 
@@ -133,35 +129,32 @@ null (empty response body)
 # **deleteSmtpTemplate**
 > deleteSmtpTemplate(templateId)
 
-Delete an inactive smtp template
+Delete an inactive transactional email template
 
 ### Example
 ```javascript
-var SibApiV3Sdk = require('sib-api-v3-sdk');
-var defaultClient = SibApiV3Sdk.ApiClient.instance;
+var SendinBlueApi = require('sendin_blue_api');
+var defaultClient = SendinBlueApi.ApiClient.instance;
 
 // Configure API key authorization: api-key
-var apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = 'YOUR API KEY';
+var api-key = defaultClient.authentications['api-key'];
+api-key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apikey.apiKeyPrefix = 'Token';
+//api-key.apiKeyPrefix = 'Token';
 
-// Configure API key authorization: partner-key
-var partnerKey = defaultClient.authentications['partner-key'];
-partnerKey.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//partnerKey.apiKeyPrefix = 'Token';
-
-var apiInstance = new SibApiV3Sdk.SMTPApi();
+var apiInstance = new SendinBlueApi.SMTPApi();
 
 var templateId = 789; // Number | id of the template
 
-apiInstance.deleteSmtpTemplate(templateId).then(function() {
-  console.log('API called successfully.');
-}, function(error) {
-  console.error(error);
-});
 
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+apiInstance.deleteSmtpTemplate(templateId, callback);
 ```
 
 ### Parameters
@@ -176,7 +169,7 @@ null (empty response body)
 
 ### Authorization
 
-[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+[api-key](../README.md#api-key)
 
 ### HTTP request headers
 
@@ -187,26 +180,20 @@ null (empty response body)
 # **getAggregatedSmtpReport**
 > GetAggregatedReport getAggregatedSmtpReport(opts)
 
-Get your SMTP activity aggregated over a period of time
+Get your transactional email activity aggregated over a period of time
 
 ### Example
 ```javascript
-var SibApiV3Sdk = require('sib-api-v3-sdk');
-var defaultClient = SibApiV3Sdk.ApiClient.instance;
+var SendinBlueApi = require('sendin_blue_api');
+var defaultClient = SendinBlueApi.ApiClient.instance;
 
 // Configure API key authorization: api-key
-var apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = 'YOUR API KEY';
+var api-key = defaultClient.authentications['api-key'];
+api-key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apikey.apiKeyPrefix = 'Token';
+//api-key.apiKeyPrefix = 'Token';
 
-// Configure API key authorization: partner-key
-var partnerKey = defaultClient.authentications['partner-key'];
-partnerKey.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//partnerKey.apiKeyPrefix = 'Token';
-
-var apiInstance = new SibApiV3Sdk.SMTPApi();
+var apiInstance = new SendinBlueApi.SMTPApi();
 
 var opts = { 
   'startDate': "startDate_example", // String | Mandatory if endDate is used. Starting date of the report (YYYY-MM-DD). Must be lower than equal to endDate
@@ -214,12 +201,15 @@ var opts = {
   'days': 56, // Number | Number of days in the past including today (positive integer). Not compatible with 'startDate' and 'endDate'
   'tag': "tag_example" // String | Tag of the emails
 };
-apiInstance.getAggregatedSmtpReport(opts).then(function(data) {
-  console.log('API called successfully. Returned data: ' + data);
-}, function(error) {
-  console.error(error);
-});
 
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.getAggregatedSmtpReport(opts, callback);
 ```
 
 ### Parameters
@@ -237,7 +227,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+[api-key](../README.md#api-key)
 
 ### HTTP request headers
 
@@ -248,26 +238,20 @@ Name | Type | Description  | Notes
 # **getEmailEventReport**
 > GetEmailEventReport getEmailEventReport(opts)
 
-Get all your SMTP activity (unaggregated events)
+Get all your transactional email activity (unaggregated events)
 
 ### Example
 ```javascript
-var SibApiV3Sdk = require('sib-api-v3-sdk');
-var defaultClient = SibApiV3Sdk.ApiClient.instance;
+var SendinBlueApi = require('sendin_blue_api');
+var defaultClient = SendinBlueApi.ApiClient.instance;
 
 // Configure API key authorization: api-key
-var apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = 'YOUR API KEY';
+var api-key = defaultClient.authentications['api-key'];
+api-key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apikey.apiKeyPrefix = 'Token';
+//api-key.apiKeyPrefix = 'Token';
 
-// Configure API key authorization: partner-key
-var partnerKey = defaultClient.authentications['partner-key'];
-partnerKey.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//partnerKey.apiKeyPrefix = 'Token';
-
-var apiInstance = new SibApiV3Sdk.SMTPApi();
+var apiInstance = new SendinBlueApi.SMTPApi();
 
 var opts = { 
   'limit': 50, // Number | Number limitation for the result returned
@@ -281,12 +265,15 @@ var opts = {
   'messageId': "messageId_example", // String | Filter on a specific message id
   'templateId': 789 // Number | Filter on a specific template id
 };
-apiInstance.getEmailEventReport(opts).then(function(data) {
-  console.log('API called successfully. Returned data: ' + data);
-}, function(error) {
-  console.error(error);
-});
 
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.getEmailEventReport(opts, callback);
 ```
 
 ### Parameters
@@ -310,7 +297,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+[api-key](../README.md#api-key)
 
 ### HTTP request headers
 
@@ -321,26 +308,20 @@ Name | Type | Description  | Notes
 # **getSmtpReport**
 > GetReports getSmtpReport(opts)
 
-Get your SMTP activity aggregated per day
+Get your transactional email activity aggregated per day
 
 ### Example
 ```javascript
-var SibApiV3Sdk = require('sib-api-v3-sdk');
-var defaultClient = SibApiV3Sdk.ApiClient.instance;
+var SendinBlueApi = require('sendin_blue_api');
+var defaultClient = SendinBlueApi.ApiClient.instance;
 
 // Configure API key authorization: api-key
-var apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = 'YOUR API KEY';
+var api-key = defaultClient.authentications['api-key'];
+api-key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apikey.apiKeyPrefix = 'Token';
+//api-key.apiKeyPrefix = 'Token';
 
-// Configure API key authorization: partner-key
-var partnerKey = defaultClient.authentications['partner-key'];
-partnerKey.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//partnerKey.apiKeyPrefix = 'Token';
-
-var apiInstance = new SibApiV3Sdk.SMTPApi();
+var apiInstance = new SendinBlueApi.SMTPApi();
 
 var opts = { 
   'limit': 50, // Number | Number of documents returned per page
@@ -350,12 +331,15 @@ var opts = {
   'days': 56, // Number | Number of days in the past including today (positive integer). Not compatible with 'startDate' and 'endDate'
   'tag': "tag_example" // String | Tag of the emails
 };
-apiInstance.getSmtpReport(opts).then(function(data) {
-  console.log('API called successfully. Returned data: ' + data);
-}, function(error) {
-  console.error(error);
-});
 
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.getSmtpReport(opts, callback);
 ```
 
 ### Parameters
@@ -375,7 +359,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+[api-key](../README.md#api-key)
 
 ### HTTP request headers
 
@@ -390,31 +374,28 @@ Returns the template informations
 
 ### Example
 ```javascript
-var SibApiV3Sdk = require('sib-api-v3-sdk');
-var defaultClient = SibApiV3Sdk.ApiClient.instance;
+var SendinBlueApi = require('sendin_blue_api');
+var defaultClient = SendinBlueApi.ApiClient.instance;
 
 // Configure API key authorization: api-key
-var apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = 'YOUR API KEY';
+var api-key = defaultClient.authentications['api-key'];
+api-key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apikey.apiKeyPrefix = 'Token';
+//api-key.apiKeyPrefix = 'Token';
 
-// Configure API key authorization: partner-key
-var partnerKey = defaultClient.authentications['partner-key'];
-partnerKey.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//partnerKey.apiKeyPrefix = 'Token';
-
-var apiInstance = new SibApiV3Sdk.SMTPApi();
+var apiInstance = new SendinBlueApi.SMTPApi();
 
 var templateId = 789; // Number | id of the template
 
-apiInstance.getSmtpTemplate(templateId).then(function(data) {
-  console.log('API called successfully. Returned data: ' + data);
-}, function(error) {
-  console.error(error);
-});
 
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.getSmtpTemplate(templateId, callback);
 ```
 
 ### Parameters
@@ -429,7 +410,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+[api-key](../README.md#api-key)
 
 ### HTTP request headers
 
@@ -440,38 +421,35 @@ Name | Type | Description  | Notes
 # **getSmtpTemplates**
 > GetSmtpTemplates getSmtpTemplates(opts)
 
-Get the list of SMTP templates
+Get the list of transactional email templates
 
 ### Example
 ```javascript
-var SibApiV3Sdk = require('sib-api-v3-sdk');
-var defaultClient = SibApiV3Sdk.ApiClient.instance;
+var SendinBlueApi = require('sendin_blue_api');
+var defaultClient = SendinBlueApi.ApiClient.instance;
 
 // Configure API key authorization: api-key
-var apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = 'YOUR API KEY';
+var api-key = defaultClient.authentications['api-key'];
+api-key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apikey.apiKeyPrefix = 'Token';
+//api-key.apiKeyPrefix = 'Token';
 
-// Configure API key authorization: partner-key
-var partnerKey = defaultClient.authentications['partner-key'];
-partnerKey.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//partnerKey.apiKeyPrefix = 'Token';
-
-var apiInstance = new SibApiV3Sdk.SMTPApi();
+var apiInstance = new SendinBlueApi.SMTPApi();
 
 var opts = { 
   'templateStatus': true, // Boolean | Filter on the status of the template. Active = true, inactive = false
   'limit': 50, // Number | Number of documents returned per page
   'offset': 0 // Number | Index of the first document in the page
 };
-apiInstance.getSmtpTemplates(opts).then(function(data) {
-  console.log('API called successfully. Returned data: ' + data);
-}, function(error) {
-  console.error(error);
-});
 
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.getSmtpTemplates(opts, callback);
 ```
 
 ### Parameters
@@ -488,7 +466,120 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+[api-key](../README.md#api-key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="getTransacEmailContent"></a>
+# **getTransacEmailContent**
+> GetTransacEmailContent getTransacEmailContent(uuid)
+
+Get the personalized content of a sent transactional email
+
+### Example
+```javascript
+var SendinBlueApi = require('sendin_blue_api');
+var defaultClient = SendinBlueApi.ApiClient.instance;
+
+// Configure API key authorization: api-key
+var api-key = defaultClient.authentications['api-key'];
+api-key.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api-key.apiKeyPrefix = 'Token';
+
+var apiInstance = new SendinBlueApi.SMTPApi();
+
+var uuid = "uuid_example"; // String | Unique id of the transactional email that has been sent to a particular contact
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.getTransacEmailContent(uuid, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uuid** | **String**| Unique id of the transactional email that has been sent to a particular contact | 
+
+### Return type
+
+[**GetTransacEmailContent**](GetTransacEmailContent.md)
+
+### Authorization
+
+[api-key](../README.md#api-key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="getTransacEmailsList"></a>
+# **getTransacEmailsList**
+> GetTransacEmailsList getTransacEmailsList(opts)
+
+Get the list of transactional emails on the basis of allowed filters
+
+This endpoint will show the list of emails for past 30 days by default. To retrieve emails before that time, please pass startDate and endDate in query filters.
+
+### Example
+```javascript
+var SendinBlueApi = require('sendin_blue_api');
+var defaultClient = SendinBlueApi.ApiClient.instance;
+
+// Configure API key authorization: api-key
+var api-key = defaultClient.authentications['api-key'];
+api-key.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api-key.apiKeyPrefix = 'Token';
+
+var apiInstance = new SendinBlueApi.SMTPApi();
+
+var opts = { 
+  'email': "email_example", // String | Mandatory if templateId and messageId are not passed in query filters. Email address to which transactional email has been sent.
+  'templateId': 789, // Number | Mandatory if email and messageId are not passed in query filters. Id of the template that was used to compose transactional email.
+  'messageId': "messageId_example", // String | Mandatory if templateId and email are not passed in query filters. Message ID of the transactional email sent.
+  'startDate': "startDate_example", // String | Mandatory if endDate is used. Starting date (YYYY-MM-DD) from which you want to fetch the list. Maximum time period that can be selected is one month.
+  'endDate': new Date("2013-10-20") // Date | Mandatory if startDate is used. Ending date (YYYY-MM-DD) till which you want to fetch the list. Maximum time period that can be selected is one month.
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.getTransacEmailsList(opts, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **email** | **String**| Mandatory if templateId and messageId are not passed in query filters. Email address to which transactional email has been sent. | [optional] 
+ **templateId** | **Number**| Mandatory if email and messageId are not passed in query filters. Id of the template that was used to compose transactional email. | [optional] 
+ **messageId** | **String**| Mandatory if templateId and email are not passed in query filters. Message ID of the transactional email sent. | [optional] 
+ **startDate** | **String**| Mandatory if endDate is used. Starting date (YYYY-MM-DD) from which you want to fetch the list. Maximum time period that can be selected is one month. | [optional] 
+ **endDate** | **Date**| Mandatory if startDate is used. Ending date (YYYY-MM-DD) till which you want to fetch the list. Maximum time period that can be selected is one month. | [optional] 
+
+### Return type
+
+[**GetTransacEmailsList**](GetTransacEmailsList.md)
+
+### Authorization
+
+[api-key](../README.md#api-key)
 
 ### HTTP request headers
 
@@ -505,33 +596,30 @@ This endpoint is deprecated. Prefer v3/smtp/email instead.
 
 ### Example
 ```javascript
-var SibApiV3Sdk = require('sib-api-v3-sdk');
-var defaultClient = SibApiV3Sdk.ApiClient.instance;
+var SendinBlueApi = require('sendin_blue_api');
+var defaultClient = SendinBlueApi.ApiClient.instance;
 
 // Configure API key authorization: api-key
-var apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = 'YOUR API KEY';
+var api-key = defaultClient.authentications['api-key'];
+api-key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apikey.apiKeyPrefix = 'Token';
+//api-key.apiKeyPrefix = 'Token';
 
-// Configure API key authorization: partner-key
-var partnerKey = defaultClient.authentications['partner-key'];
-partnerKey.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//partnerKey.apiKeyPrefix = 'Token';
-
-var apiInstance = new SibApiV3Sdk.SMTPApi();
+var apiInstance = new SendinBlueApi.SMTPApi();
 
 var templateId = 789; // Number | Id of the template
 
-var sendEmail = new SibApiV3Sdk.SendEmail(); // SendEmail | 
+var sendEmail = new SendinBlueApi.SendEmail(); // SendEmail | 
 
-apiInstance.sendTemplate(templateId, sendEmail).then(function(data) {
-  console.log('API called successfully. Returned data: ' + data);
-}, function(error) {
-  console.error(error);
-});
 
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.sendTemplate(templateId, sendEmail, callback);
 ```
 
 ### Parameters
@@ -547,7 +635,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+[api-key](../README.md#api-key)
 
 ### HTTP request headers
 
@@ -562,33 +650,30 @@ Send a template to your test list
 
 ### Example
 ```javascript
-var SibApiV3Sdk = require('sib-api-v3-sdk');
-var defaultClient = SibApiV3Sdk.ApiClient.instance;
+var SendinBlueApi = require('sendin_blue_api');
+var defaultClient = SendinBlueApi.ApiClient.instance;
 
 // Configure API key authorization: api-key
-var apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = 'YOUR API KEY';
+var api-key = defaultClient.authentications['api-key'];
+api-key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apikey.apiKeyPrefix = 'Token';
+//api-key.apiKeyPrefix = 'Token';
 
-// Configure API key authorization: partner-key
-var partnerKey = defaultClient.authentications['partner-key'];
-partnerKey.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//partnerKey.apiKeyPrefix = 'Token';
-
-var apiInstance = new SibApiV3Sdk.SMTPApi();
+var apiInstance = new SendinBlueApi.SMTPApi();
 
 var templateId = 789; // Number | Id of the template
 
-var sendTestEmail = new SibApiV3Sdk.SendTestEmail(); // SendTestEmail | 
+var sendTestEmail = new SendinBlueApi.SendTestEmail(); // SendTestEmail | 
 
-apiInstance.sendTestTemplate(templateId, sendTestEmail).then(function() {
-  console.log('API called successfully.');
-}, function(error) {
-  console.error(error);
-});
 
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+apiInstance.sendTestTemplate(templateId, sendTestEmail, callback);
 ```
 
 ### Parameters
@@ -604,7 +689,7 @@ null (empty response body)
 
 ### Authorization
 
-[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+[api-key](../README.md#api-key)
 
 ### HTTP request headers
 
@@ -619,31 +704,28 @@ Send a transactional email
 
 ### Example
 ```javascript
-var SibApiV3Sdk = require('sib-api-v3-sdk');
-var defaultClient = SibApiV3Sdk.ApiClient.instance;
+var SendinBlueApi = require('sendin_blue_api');
+var defaultClient = SendinBlueApi.ApiClient.instance;
 
 // Configure API key authorization: api-key
-var apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = 'YOUR API KEY';
+var api-key = defaultClient.authentications['api-key'];
+api-key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apikey.apiKeyPrefix = 'Token';
+//api-key.apiKeyPrefix = 'Token';
 
-// Configure API key authorization: partner-key
-var partnerKey = defaultClient.authentications['partner-key'];
-partnerKey.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//partnerKey.apiKeyPrefix = 'Token';
+var apiInstance = new SendinBlueApi.SMTPApi();
 
-var apiInstance = new SibApiV3Sdk.SMTPApi();
+var sendSmtpEmail = new SendinBlueApi.SendSmtpEmail(); // SendSmtpEmail | Values to send a transactional email
 
-var sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail(); // SendSmtpEmail | Values to send a transactional email
 
-apiInstance.sendTransacEmail(sendSmtpEmail).then(function(data) {
-  console.log('API called successfully. Returned data: ' + data);
-}, function(error) {
-  console.error(error);
-});
-
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.sendTransacEmail(sendSmtpEmail, callback);
 ```
 
 ### Parameters
@@ -658,7 +740,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+[api-key](../README.md#api-key)
 
 ### HTTP request headers
 
@@ -669,37 +751,34 @@ Name | Type | Description  | Notes
 # **updateSmtpTemplate**
 > updateSmtpTemplate(templateId, smtpTemplate)
 
-Updates an smtp templates
+Updates a transactional email templates
 
 ### Example
 ```javascript
-var SibApiV3Sdk = require('sib-api-v3-sdk');
-var defaultClient = SibApiV3Sdk.ApiClient.instance;
+var SendinBlueApi = require('sendin_blue_api');
+var defaultClient = SendinBlueApi.ApiClient.instance;
 
 // Configure API key authorization: api-key
-var apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = 'YOUR API KEY';
+var api-key = defaultClient.authentications['api-key'];
+api-key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apikey.apiKeyPrefix = 'Token';
+//api-key.apiKeyPrefix = 'Token';
 
-// Configure API key authorization: partner-key
-var partnerKey = defaultClient.authentications['partner-key'];
-partnerKey.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//partnerKey.apiKeyPrefix = 'Token';
-
-var apiInstance = new SibApiV3Sdk.SMTPApi();
+var apiInstance = new SendinBlueApi.SMTPApi();
 
 var templateId = 789; // Number | id of the template
 
-var smtpTemplate = new SibApiV3Sdk.UpdateSmtpTemplate(); // UpdateSmtpTemplate | values to update in smtp template
+var smtpTemplate = new SendinBlueApi.UpdateSmtpTemplate(); // UpdateSmtpTemplate | values to update in transactional email template
 
-apiInstance.updateSmtpTemplate(templateId, smtpTemplate).then(function() {
-  console.log('API called successfully.');
-}, function(error) {
-  console.error(error);
-});
 
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+apiInstance.updateSmtpTemplate(templateId, smtpTemplate, callback);
 ```
 
 ### Parameters
@@ -707,7 +786,7 @@ apiInstance.updateSmtpTemplate(templateId, smtpTemplate).then(function() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **templateId** | **Number**| id of the template | 
- **smtpTemplate** | [**UpdateSmtpTemplate**](UpdateSmtpTemplate.md)| values to update in smtp template | 
+ **smtpTemplate** | [**UpdateSmtpTemplate**](UpdateSmtpTemplate.md)| values to update in transactional email template | 
 
 ### Return type
 
@@ -715,7 +794,7 @@ null (empty response body)
 
 ### Authorization
 
-[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+[api-key](../README.md#api-key)
 
 ### HTTP request headers
 

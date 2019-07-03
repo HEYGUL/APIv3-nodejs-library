@@ -1,4 +1,4 @@
-# SibApiV3Sdk.TransactionalSMSApi
+# SendinBlueApi.TransactionalSMSApi
 
 All URIs are relative to *https://api.sendinblue.com/v3*
 
@@ -18,22 +18,16 @@ Get all the SMS activity (unaggregated events)
 
 ### Example
 ```javascript
-var SibApiV3Sdk = require('sib-api-v3-sdk');
-var defaultClient = SibApiV3Sdk.ApiClient.instance;
+var SendinBlueApi = require('sendin_blue_api');
+var defaultClient = SendinBlueApi.ApiClient.instance;
 
 // Configure API key authorization: api-key
-var apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = 'YOUR API KEY';
+var api-key = defaultClient.authentications['api-key'];
+api-key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apikey.apiKeyPrefix = 'Token';
+//api-key.apiKeyPrefix = 'Token';
 
-// Configure API key authorization: partner-key
-var partnerKey = defaultClient.authentications['partner-key'];
-partnerKey.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//partnerKey.apiKeyPrefix = 'Token';
-
-var apiInstance = new SibApiV3Sdk.TransactionalSMSApi();
+var apiInstance = new SendinBlueApi.TransactionalSMSApi();
 
 var opts = { 
   'limit': 50, // Number | Number of documents per page
@@ -45,12 +39,15 @@ var opts = {
   'event': "event_example", // String | Filter the report for specific events
   'tags': "tags_example" // String | Filter the report for specific tags passed as a serialized urlencoded array
 };
-apiInstance.getSmsEvents(opts).then(function(data) {
-  console.log('API called successfully. Returned data: ' + data);
-}, function(error) {
-  console.error(error);
-});
 
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.getSmsEvents(opts, callback);
 ```
 
 ### Parameters
@@ -72,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+[api-key](../README.md#api-key)
 
 ### HTTP request headers
 
@@ -87,22 +84,16 @@ Get your SMS activity aggregated over a period of time
 
 ### Example
 ```javascript
-var SibApiV3Sdk = require('sib-api-v3-sdk');
-var defaultClient = SibApiV3Sdk.ApiClient.instance;
+var SendinBlueApi = require('sendin_blue_api');
+var defaultClient = SendinBlueApi.ApiClient.instance;
 
 // Configure API key authorization: api-key
-var apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = 'YOUR API KEY';
+var api-key = defaultClient.authentications['api-key'];
+api-key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apikey.apiKeyPrefix = 'Token';
+//api-key.apiKeyPrefix = 'Token';
 
-// Configure API key authorization: partner-key
-var partnerKey = defaultClient.authentications['partner-key'];
-partnerKey.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//partnerKey.apiKeyPrefix = 'Token';
-
-var apiInstance = new SibApiV3Sdk.TransactionalSMSApi();
+var apiInstance = new SendinBlueApi.TransactionalSMSApi();
 
 var opts = { 
   'startDate': "startDate_example", // String | Mandatory if endDate is used. Starting date (YYYY-MM-DD) of the report
@@ -110,12 +101,15 @@ var opts = {
   'days': 56, // Number | Number of days in the past including today (positive integer). Not compatible with startDate and endDate
   'tag': "tag_example" // String | Filter on a tag
 };
-apiInstance.getTransacAggregatedSmsReport(opts).then(function(data) {
-  console.log('API called successfully. Returned data: ' + data);
-}, function(error) {
-  console.error(error);
-});
 
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.getTransacAggregatedSmsReport(opts, callback);
 ```
 
 ### Parameters
@@ -133,7 +127,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+[api-key](../README.md#api-key)
 
 ### HTTP request headers
 
@@ -148,22 +142,16 @@ Get your SMS activity aggregated per day
 
 ### Example
 ```javascript
-var SibApiV3Sdk = require('sib-api-v3-sdk');
-var defaultClient = SibApiV3Sdk.ApiClient.instance;
+var SendinBlueApi = require('sendin_blue_api');
+var defaultClient = SendinBlueApi.ApiClient.instance;
 
 // Configure API key authorization: api-key
-var apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = 'YOUR API KEY';
+var api-key = defaultClient.authentications['api-key'];
+api-key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apikey.apiKeyPrefix = 'Token';
+//api-key.apiKeyPrefix = 'Token';
 
-// Configure API key authorization: partner-key
-var partnerKey = defaultClient.authentications['partner-key'];
-partnerKey.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//partnerKey.apiKeyPrefix = 'Token';
-
-var apiInstance = new SibApiV3Sdk.TransactionalSMSApi();
+var apiInstance = new SendinBlueApi.TransactionalSMSApi();
 
 var opts = { 
   'startDate': "startDate_example", // String | Mandatory if endDate is used. Starting date (YYYY-MM-DD) of the report
@@ -171,12 +159,15 @@ var opts = {
   'days': 56, // Number | Number of days in the past including today (positive integer). Not compatible with 'startDate' and 'endDate'
   'tag': "tag_example" // String | Filter on a tag
 };
-apiInstance.getTransacSmsReport(opts).then(function(data) {
-  console.log('API called successfully. Returned data: ' + data);
-}, function(error) {
-  console.error(error);
-});
 
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.getTransacSmsReport(opts, callback);
 ```
 
 ### Parameters
@@ -194,7 +185,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+[api-key](../README.md#api-key)
 
 ### HTTP request headers
 
@@ -209,31 +200,28 @@ Send the SMS campaign to the specified mobile number
 
 ### Example
 ```javascript
-var SibApiV3Sdk = require('sib-api-v3-sdk');
-var defaultClient = SibApiV3Sdk.ApiClient.instance;
+var SendinBlueApi = require('sendin_blue_api');
+var defaultClient = SendinBlueApi.ApiClient.instance;
 
 // Configure API key authorization: api-key
-var apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = 'YOUR API KEY';
+var api-key = defaultClient.authentications['api-key'];
+api-key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apikey.apiKeyPrefix = 'Token';
+//api-key.apiKeyPrefix = 'Token';
 
-// Configure API key authorization: partner-key
-var partnerKey = defaultClient.authentications['partner-key'];
-partnerKey.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//partnerKey.apiKeyPrefix = 'Token';
+var apiInstance = new SendinBlueApi.TransactionalSMSApi();
 
-var apiInstance = new SibApiV3Sdk.TransactionalSMSApi();
+var sendTransacSms = new SendinBlueApi.SendTransacSms(); // SendTransacSms | Values to send a transactional SMS
 
-var sendTransacSms = new SibApiV3Sdk.SendTransacSms(); // SendTransacSms | Values to send a transactional SMS
 
-apiInstance.sendTransacSms(sendTransacSms).then(function(data) {
-  console.log('API called successfully. Returned data: ' + data);
-}, function(error) {
-  console.error(error);
-});
-
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.sendTransacSms(sendTransacSms, callback);
 ```
 
 ### Parameters
@@ -248,7 +236,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+[api-key](../README.md#api-key)
 
 ### HTTP request headers
 

@@ -1,4 +1,4 @@
-# SibApiV3Sdk.GetSendersListIps
+# SendinBlueApi.GetSendersListIps
 
 ## Properties
 Name | Type | Description | Notes

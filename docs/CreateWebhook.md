@@ -1,4 +1,4 @@
-# SibApiV3Sdk.CreateWebhook
+# SendinBlueApi.CreateWebhook
 
 ## Properties
 Name | Type | Description | Notes
@@ -38,6 +38,10 @@ Name | Type | Description | Notes
 * `unsubscribed` (value: `"unsubscribed"`)
 
 * `listAddition` (value: `"listAddition"`)
+
+* `contactUpdated` (value: `"contactUpdated"`)
+
+* `contactDeleted` (value: `"contactDeleted"`)
 
 
 

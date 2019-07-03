@@ -1,4 +1,4 @@
-# SibApiV3Sdk.UpdateChildDomain
+# SendinBlueApi.UpdateChildDomain
 
 ## Properties
 Name | Type | Description | Notes

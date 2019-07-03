@@ -1,4 +1,4 @@
-# SibApiV3Sdk.SendTransacSms
+# SendinBlueApi.SendTransacSms
 
 ## Properties
 Name | Type | Description | Notes

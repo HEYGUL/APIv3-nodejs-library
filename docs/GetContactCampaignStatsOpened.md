@@ -1,4 +1,4 @@
-# SibApiV3Sdk.GetContactCampaignStatsOpened
+# SendinBlueApi.GetContactCampaignStatsOpened
 
 ## Properties
 Name | Type | Description | Notes

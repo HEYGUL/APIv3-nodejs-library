@@ -1,4 +1,4 @@
-# SibApiV3Sdk.ProcessApi
+# SendinBlueApi.ProcessApi
 
 All URIs are relative to *https://api.sendinblue.com/v3*
 
@@ -16,31 +16,28 @@ Return the informations for a process
 
 ### Example
 ```javascript
-var SibApiV3Sdk = require('sib-api-v3-sdk');
-var defaultClient = SibApiV3Sdk.ApiClient.instance;
+var SendinBlueApi = require('sendin_blue_api');
+var defaultClient = SendinBlueApi.ApiClient.instance;
 
 // Configure API key authorization: api-key
-var apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = 'YOUR API KEY';
+var api-key = defaultClient.authentications['api-key'];
+api-key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apikey.apiKeyPrefix = 'Token';
+//api-key.apiKeyPrefix = 'Token';
 
-// Configure API key authorization: partner-key
-var partnerKey = defaultClient.authentications['partner-key'];
-partnerKey.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//partnerKey.apiKeyPrefix = 'Token';
-
-var apiInstance = new SibApiV3Sdk.ProcessApi();
+var apiInstance = new SendinBlueApi.ProcessApi();
 
 var processId = 789; // Number | Id of the process
 
-apiInstance.getProcess(processId).then(function(data) {
-  console.log('API called successfully. Returned data: ' + data);
-}, function(error) {
-  console.error(error);
-});
 
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.getProcess(processId, callback);
 ```
 
 ### Parameters
@@ -55,7 +52,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+[api-key](../README.md#api-key)
 
 ### HTTP request headers
 
@@ -70,33 +67,30 @@ Return all the processes for your account
 
 ### Example
 ```javascript
-var SibApiV3Sdk = require('sib-api-v3-sdk');
-var defaultClient = SibApiV3Sdk.ApiClient.instance;
+var SendinBlueApi = require('sendin_blue_api');
+var defaultClient = SendinBlueApi.ApiClient.instance;
 
 // Configure API key authorization: api-key
-var apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = 'YOUR API KEY';
+var api-key = defaultClient.authentications['api-key'];
+api-key.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apikey.apiKeyPrefix = 'Token';
+//api-key.apiKeyPrefix = 'Token';
 
-// Configure API key authorization: partner-key
-var partnerKey = defaultClient.authentications['partner-key'];
-partnerKey.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//partnerKey.apiKeyPrefix = 'Token';
-
-var apiInstance = new SibApiV3Sdk.ProcessApi();
+var apiInstance = new SendinBlueApi.ProcessApi();
 
 var opts = { 
   'limit': 10, // Number | Number limitation for the result returned
   'offset': 0 // Number | Beginning point in the list to retrieve from.
 };
-apiInstance.getProcesses(opts).then(function(data) {
-  console.log('API called successfully. Returned data: ' + data);
-}, function(error) {
-  console.error(error);
-});
 
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.getProcesses(opts, callback);
 ```
 
 ### Parameters
@@ -112,7 +106,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api-key](../README.md#api-key), [partner-key](../README.md#partner-key)
+[api-key](../README.md#api-key)
 
 ### HTTP request headers
 

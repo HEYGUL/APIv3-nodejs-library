@@ -1,4 +1,4 @@
-# SibApiV3Sdk.GetEmailEventReport
+# SendinBlueApi.GetEmailEventReport
 
 ## Properties
 Name | Type | Description | Notes

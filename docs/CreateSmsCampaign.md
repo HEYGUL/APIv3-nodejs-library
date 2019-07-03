@@ -1,4 +1,4 @@
-# SibApiV3Sdk.CreateSmsCampaign
+# SendinBlueApi.CreateSmsCampaign
 
 ## Properties
 Name | Type | Description | Notes

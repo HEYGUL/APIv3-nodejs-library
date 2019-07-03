@@ -1,4 +1,4 @@
-# SibApiV3Sdk.GetProcess
+# SendinBlueApi.GetProcess
 
 ## Properties
 Name | Type | Description | Notes

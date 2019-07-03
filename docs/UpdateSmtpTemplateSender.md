@@ -1,4 +1,4 @@
-# SibApiV3Sdk.UpdateSmtpTemplateSender
+# SendinBlueApi.UpdateSmtpTemplateSender
 
 ## Properties
 Name | Type | Description | Notes

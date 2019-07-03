@@ -1,4 +1,4 @@
-# SibApiV3Sdk.GetAccount
+# SendinBlueApi.GetAccount
 
 ## Properties
 Name | Type | Description | Notes

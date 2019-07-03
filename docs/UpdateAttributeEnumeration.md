@@ -1,4 +1,4 @@
-# SibApiV3Sdk.UpdateAttributeEnumeration
+# SendinBlueApi.UpdateAttributeEnumeration
 
 ## Properties
 Name | Type | Description | Notes

@@ -1,4 +1,4 @@
-# SibApiV3Sdk.GetExtendedContactDetailsStatisticsOpened
+# SendinBlueApi.GetExtendedContactDetailsStatisticsOpened
 
 ## Properties
 Name | Type | Description | Notes

@@ -1,4 +1,4 @@
-# SibApiV3Sdk.CreateUpdateFolder
+# SendinBlueApi.CreateUpdateFolder
 
 ## Properties
 Name | Type | Description | Notes

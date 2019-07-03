@@ -1,4 +1,4 @@
-# SibApiV3Sdk.AddContactToList
+# SendinBlueApi.AddContactToList
 
 ## Properties
 Name | Type | Description | Notes

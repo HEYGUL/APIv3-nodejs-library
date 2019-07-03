@@ -1,4 +1,4 @@
-# SibApiV3Sdk.DeleteHardbounces
+# SendinBlueApi.DeleteHardbounces
 
 ## Properties
 Name | Type | Description | Notes

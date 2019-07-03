@@ -1,4 +1,4 @@
-# SibApiV3Sdk.RequestContactImportNewList
+# SendinBlueApi.RequestContactImportNewList
 
 ## Properties
 Name | Type | Description | Notes

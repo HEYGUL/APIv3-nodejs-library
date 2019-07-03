@@ -1,4 +1,4 @@
-# SibApiV3Sdk.UpdateEmailCampaignRecipients
+# SendinBlueApi.UpdateEmailCampaignRecipients
 
 ## Properties
 Name | Type | Description | Notes

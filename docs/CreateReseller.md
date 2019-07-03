@@ -1,4 +1,4 @@
-# SibApiV3Sdk.CreateReseller
+# SendinBlueApi.CreateReseller
 
 ## Properties
 Name | Type | Description | Notes

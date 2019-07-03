@@ -1,4 +1,4 @@
-# SibApiV3Sdk.GetCampaignRecipients
+# SendinBlueApi.GetCampaignRecipients
 
 ## Properties
 Name | Type | Description | Notes

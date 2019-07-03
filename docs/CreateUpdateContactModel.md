@@ -1,4 +1,4 @@
-# SibApiV3Sdk.CreateUpdateContactModel
+# SendinBlueApi.CreateUpdateContactModel
 
 ## Properties
 Name | Type | Description | Notes

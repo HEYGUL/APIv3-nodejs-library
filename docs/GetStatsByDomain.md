@@ -1,4 +1,4 @@
-# SibApiV3Sdk.GetStatsByDomain
+# SendinBlueApi.GetStatsByDomain
 
 ## Properties
 Name | Type | Description | Notes

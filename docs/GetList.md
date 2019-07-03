@@ -1,4 +1,4 @@
-# SibApiV3Sdk.GetList
+# SendinBlueApi.GetList
 
 ## Properties
 Name | Type | Description | Notes

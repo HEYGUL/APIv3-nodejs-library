@@ -1,4 +1,4 @@
-# SibApiV3Sdk.GetEmailCampaigns
+# SendinBlueApi.GetEmailCampaigns
 
 ## Properties
 Name | Type | Description | Notes

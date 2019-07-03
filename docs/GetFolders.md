@@ -1,4 +1,4 @@
-# SibApiV3Sdk.GetFolders
+# SendinBlueApi.GetFolders
 
 ## Properties
 Name | Type | Description | Notes

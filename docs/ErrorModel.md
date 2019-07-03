@@ -1,4 +1,4 @@
-# SibApiV3Sdk.ErrorModel
+# SendinBlueApi.ErrorModel
 
 ## Properties
 Name | Type | Description | Notes

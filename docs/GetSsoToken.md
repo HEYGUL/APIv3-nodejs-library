@@ -1,4 +1,4 @@
-# SibApiV3Sdk.GetSsoToken
+# SendinBlueApi.GetSsoToken
 
 ## Properties
 Name | Type | Description | Notes

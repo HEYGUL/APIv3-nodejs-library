@@ -1,4 +1,4 @@
-# SibApiV3Sdk.PostContactInfoContacts
+# SendinBlueApi.PostContactInfoContacts
 
 ## Properties
 Name | Type | Description | Notes

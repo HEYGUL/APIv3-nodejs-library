@@ -1,4 +1,4 @@
-# SibApiV3Sdk.SendSmtpEmailSender
+# SendinBlueApi.SendSmtpEmailSender
 
 ## Properties
 Name | Type | Description | Notes

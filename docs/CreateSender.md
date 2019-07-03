@@ -1,4 +1,4 @@
-# SibApiV3Sdk.CreateSender
+# SendinBlueApi.CreateSender
 
 ## Properties
 Name | Type | Description | Notes

@@ -1,4 +1,4 @@
-# SibApiV3Sdk.GetTransacAggregatedSmsReport
+# SendinBlueApi.GetTransacAggregatedSmsReport
 
 ## Properties
 Name | Type | Description | Notes

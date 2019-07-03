@@ -1,4 +1,4 @@
-# SibApiV3Sdk.GetWebhooks
+# SendinBlueApi.GetWebhooks
 
 ## Properties
 Name | Type | Description | Notes

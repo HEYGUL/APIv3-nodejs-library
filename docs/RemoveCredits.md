@@ -1,4 +1,4 @@
-# SibApiV3Sdk.RemoveCredits
+# SendinBlueApi.RemoveCredits
 
 ## Properties
 Name | Type | Description | Notes

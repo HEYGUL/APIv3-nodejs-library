@@ -1,4 +1,4 @@
-# SibApiV3Sdk.UpdateChild
+# SendinBlueApi.UpdateChild
 
 ## Properties
 Name | Type | Description | Notes

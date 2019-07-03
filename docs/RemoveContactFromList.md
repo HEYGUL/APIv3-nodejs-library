@@ -1,4 +1,4 @@
-# SibApiV3Sdk.RemoveContactFromList
+# SendinBlueApi.RemoveContactFromList
 
 ## Properties
 Name | Type | Description | Notes

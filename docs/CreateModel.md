@@ -1,4 +1,4 @@
-# SibApiV3Sdk.CreateModel
+# SendinBlueApi.CreateModel
 
 ## Properties
 Name | Type | Description | Notes

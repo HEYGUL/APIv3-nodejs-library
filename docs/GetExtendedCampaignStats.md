@@ -1,4 +1,4 @@
-# SibApiV3Sdk.GetExtendedCampaignStats
+# SendinBlueApi.GetExtendedCampaignStats
 
 ## Properties
 Name | Type | Description | Notes

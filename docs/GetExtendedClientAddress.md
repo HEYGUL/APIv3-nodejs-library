@@ -1,4 +1,4 @@
-# SibApiV3Sdk.GetExtendedClientAddress
+# SendinBlueApi.GetExtendedClientAddress
 
 ## Properties
 Name | Type | Description | Notes

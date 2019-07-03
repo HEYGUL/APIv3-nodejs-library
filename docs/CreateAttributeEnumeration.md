@@ -1,4 +1,4 @@
-# SibApiV3Sdk.CreateAttributeEnumeration
+# SendinBlueApi.CreateAttributeEnumeration
 
 ## Properties
 Name | Type | Description | Notes

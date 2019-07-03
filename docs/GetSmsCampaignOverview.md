@@ -1,4 +1,4 @@
-# SibApiV3Sdk.GetSmsCampaignOverview
+# SendinBlueApi.GetSmsCampaignOverview
 
 ## Properties
 Name | Type | Description | Notes
