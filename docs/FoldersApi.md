@@ -33,15 +33,12 @@ var apiInstance = new SendinBlueApi.FoldersApi();
 
 var createFolder = new SendinBlueApi.CreateUpdateFolder(); // CreateUpdateFolder | Name of the folder
 
+apiInstance.createFolder(createFolder).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.createFolder(createFolder, callback);
 ```
 
 ### Parameters
@@ -84,15 +81,12 @@ var apiInstance = new SendinBlueApi.FoldersApi();
 
 var folderId = 789; // Number | Id of the folder
 
+apiInstance.deleteFolder(folderId).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.deleteFolder(folderId, callback);
 ```
 
 ### Parameters
@@ -135,15 +129,12 @@ var apiInstance = new SendinBlueApi.FoldersApi();
 
 var folderId = 789; // Number | id of the folder
 
+apiInstance.getFolder(folderId).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getFolder(folderId, callback);
 ```
 
 ### Parameters
@@ -190,15 +181,12 @@ var opts = {
   'limit': 10, // Number | Number of documents per page
   'offset': 0 // Number | Index of the first document of the page
 };
+apiInstance.getFolderLists(folderId, opts).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getFolderLists(folderId, opts, callback);
 ```
 
 ### Parameters
@@ -245,15 +233,12 @@ var limit = 10; // Number | Number of documents per page
 
 var offset = 0; // Number | Index of the first document of the page
 
+apiInstance.getFolders(limit, offset).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getFolders(limit, offset, callback);
 ```
 
 ### Parameters
@@ -299,15 +284,12 @@ var folderId = 789; // Number | Id of the folder
 
 var updateFolder = new SendinBlueApi.CreateUpdateFolder(); // CreateUpdateFolder | Name of the folder
 
+apiInstance.updateFolder(folderId, updateFolder).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.updateFolder(folderId, updateFolder, callback);
 ```
 
 ### Parameters

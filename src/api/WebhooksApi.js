@@ -48,21 +48,13 @@
     this.apiClient = apiClient || ApiClient.instance;
 
 
-    /**
-     * Callback function to receive the result of the createWebhook operation.
-     * @callback module:api/WebhooksApi~createWebhookCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/CreateModel} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Create a webhook
      * @param {module:model/CreateWebhook} createWebhook Values to create a webhook
-     * @param {module:api/WebhooksApi~createWebhookCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/CreateModel}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/CreateModel} and HTTP response
      */
-    this.createWebhook = function(createWebhook, callback) {
+    this.createWebhookWithHttpInfo = function(createWebhook) {
       var postBody = createWebhook;
 
       // verify the required parameter 'createWebhook' is set
@@ -90,24 +82,29 @@
       return this.apiClient.callApi(
         '/webhooks', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the deleteWebhook operation.
-     * @callback module:api/WebhooksApi~deleteWebhookCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Create a webhook
+     * @param {module:model/CreateWebhook} createWebhook Values to create a webhook
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/CreateModel}
      */
+    this.createWebhook = function(createWebhook) {
+      return this.createWebhookWithHttpInfo(createWebhook)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Delete a webhook
      * @param {Number} webhookId Id of the webhook
-     * @param {module:api/WebhooksApi~deleteWebhookCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.deleteWebhook = function(webhookId, callback) {
+    this.deleteWebhookWithHttpInfo = function(webhookId) {
       var postBody = null;
 
       // verify the required parameter 'webhookId' is set
@@ -136,25 +133,29 @@
       return this.apiClient.callApi(
         '/webhooks/{webhookId}', 'DELETE',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getWebhook operation.
-     * @callback module:api/WebhooksApi~getWebhookCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetWebhook} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Delete a webhook
+     * @param {Number} webhookId Id of the webhook
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.deleteWebhook = function(webhookId) {
+      return this.deleteWebhookWithHttpInfo(webhookId)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get a webhook details
      * @param {Number} webhookId Id of the webhook
-     * @param {module:api/WebhooksApi~getWebhookCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetWebhook}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetWebhook} and HTTP response
      */
-    this.getWebhook = function(webhookId, callback) {
+    this.getWebhookWithHttpInfo = function(webhookId) {
       var postBody = null;
 
       // verify the required parameter 'webhookId' is set
@@ -183,26 +184,30 @@
       return this.apiClient.callApi(
         '/webhooks/{webhookId}', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getWebhooks operation.
-     * @callback module:api/WebhooksApi~getWebhooksCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetWebhooks} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get a webhook details
+     * @param {Number} webhookId Id of the webhook
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetWebhook}
      */
+    this.getWebhook = function(webhookId) {
+      return this.getWebhookWithHttpInfo(webhookId)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get all webhooks
      * @param {Object} opts Optional parameters
      * @param {module:model/String} opts.type Filter on webhook type (default to transactional)
-     * @param {module:api/WebhooksApi~getWebhooksCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetWebhooks}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetWebhooks} and HTTP response
      */
-    this.getWebhooks = function(opts, callback) {
+    this.getWebhooksWithHttpInfo = function(opts) {
       opts = opts || {};
       var postBody = null;
 
@@ -227,25 +232,31 @@
       return this.apiClient.callApi(
         '/webhooks', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the updateWebhook operation.
-     * @callback module:api/WebhooksApi~updateWebhookCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Get all webhooks
+     * @param {Object} opts Optional parameters
+     * @param {module:model/String} opts.type Filter on webhook type (default to transactional)
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetWebhooks}
      */
+    this.getWebhooks = function(opts) {
+      return this.getWebhooksWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Update a webhook
      * @param {Number} webhookId Id of the webhook
      * @param {module:model/UpdateWebhook} updateWebhook Values to update a webhook
-     * @param {module:api/WebhooksApi~updateWebhookCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.updateWebhook = function(webhookId, updateWebhook, callback) {
+    this.updateWebhookWithHttpInfo = function(webhookId, updateWebhook) {
       var postBody = updateWebhook;
 
       // verify the required parameter 'webhookId' is set
@@ -279,8 +290,21 @@
       return this.apiClient.callApi(
         '/webhooks/{webhookId}', 'PUT',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
+    }
+
+    /**
+     * Update a webhook
+     * @param {Number} webhookId Id of the webhook
+     * @param {module:model/UpdateWebhook} updateWebhook Values to update a webhook
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     */
+    this.updateWebhook = function(webhookId, updateWebhook) {
+      return this.updateWebhookWithHttpInfo(webhookId, updateWebhook)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
   };
 

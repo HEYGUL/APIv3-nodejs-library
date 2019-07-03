@@ -48,21 +48,13 @@
     this.apiClient = apiClient || ApiClient.instance;
 
 
-    /**
-     * Callback function to receive the result of the getProcess operation.
-     * @callback module:api/ProcessApi~getProcessCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetProcess} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Return the informations for a process
      * @param {Number} processId Id of the process
-     * @param {module:api/ProcessApi~getProcessCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetProcess}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetProcess} and HTTP response
      */
-    this.getProcess = function(processId, callback) {
+    this.getProcessWithHttpInfo = function(processId) {
       var postBody = null;
 
       // verify the required parameter 'processId' is set
@@ -91,27 +83,31 @@
       return this.apiClient.callApi(
         '/processes/{processId}', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getProcesses operation.
-     * @callback module:api/ProcessApi~getProcessesCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetProcesses} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Return the informations for a process
+     * @param {Number} processId Id of the process
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetProcess}
      */
+    this.getProcess = function(processId) {
+      return this.getProcessWithHttpInfo(processId)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Return all the processes for your account
      * @param {Object} opts Optional parameters
      * @param {Number} opts.limit Number limitation for the result returned (default to 10)
      * @param {Number} opts.offset Beginning point in the list to retrieve from. (default to 0)
-     * @param {module:api/ProcessApi~getProcessesCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetProcesses}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetProcesses} and HTTP response
      */
-    this.getProcesses = function(opts, callback) {
+    this.getProcessesWithHttpInfo = function(opts) {
       opts = opts || {};
       var postBody = null;
 
@@ -137,8 +133,22 @@
       return this.apiClient.callApi(
         '/processes', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
+    }
+
+    /**
+     * Return all the processes for your account
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.limit Number limitation for the result returned (default to 10)
+     * @param {Number} opts.offset Beginning point in the list to retrieve from. (default to 0)
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetProcesses}
+     */
+    this.getProcesses = function(opts) {
+      return this.getProcessesWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
   };
 

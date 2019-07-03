@@ -32,15 +32,12 @@ var apiInstance = new SendinBlueApi.WebhooksApi();
 
 var createWebhook = new SendinBlueApi.CreateWebhook(); // CreateWebhook | Values to create a webhook
 
+apiInstance.createWebhook(createWebhook).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.createWebhook(createWebhook, callback);
 ```
 
 ### Parameters
@@ -83,15 +80,12 @@ var apiInstance = new SendinBlueApi.WebhooksApi();
 
 var webhookId = 789; // Number | Id of the webhook
 
+apiInstance.deleteWebhook(webhookId).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.deleteWebhook(webhookId, callback);
 ```
 
 ### Parameters
@@ -134,15 +128,12 @@ var apiInstance = new SendinBlueApi.WebhooksApi();
 
 var webhookId = 789; // Number | Id of the webhook
 
+apiInstance.getWebhook(webhookId).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getWebhook(webhookId, callback);
 ```
 
 ### Parameters
@@ -186,15 +177,12 @@ var apiInstance = new SendinBlueApi.WebhooksApi();
 var opts = { 
   'type': "transactional" // String | Filter on webhook type
 };
+apiInstance.getWebhooks(opts).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getWebhooks(opts, callback);
 ```
 
 ### Parameters
@@ -239,15 +227,12 @@ var webhookId = 789; // Number | Id of the webhook
 
 var updateWebhook = new SendinBlueApi.UpdateWebhook(); // UpdateWebhook | Values to update a webhook
 
+apiInstance.updateWebhook(webhookId, updateWebhook).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.updateWebhook(webhookId, updateWebhook, callback);
 ```
 
 ### Parameters

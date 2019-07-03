@@ -41,15 +41,12 @@ var apiInstance = new SendinBlueApi.SMTPApi();
 
 var smtpTemplate = new SendinBlueApi.CreateSmtpTemplate(); // CreateSmtpTemplate | values to update in transactional email template
 
+apiInstance.createSmtpTemplate(smtpTemplate).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.createSmtpTemplate(smtpTemplate, callback);
 ```
 
 ### Parameters
@@ -95,15 +92,12 @@ var apiInstance = new SendinBlueApi.SMTPApi();
 var opts = { 
   'deleteHardbounces': new SendinBlueApi.DeleteHardbounces() // DeleteHardbounces | values to delete hardbounces
 };
+apiInstance.deleteHardbounces(opts).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.deleteHardbounces(opts, callback);
 ```
 
 ### Parameters
@@ -146,15 +140,12 @@ var apiInstance = new SendinBlueApi.SMTPApi();
 
 var templateId = 789; // Number | id of the template
 
+apiInstance.deleteSmtpTemplate(templateId).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.deleteSmtpTemplate(templateId, callback);
 ```
 
 ### Parameters
@@ -201,15 +192,12 @@ var opts = {
   'days': 56, // Number | Number of days in the past including today (positive integer). Not compatible with 'startDate' and 'endDate'
   'tag': "tag_example" // String | Tag of the emails
 };
+apiInstance.getAggregatedSmtpReport(opts).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getAggregatedSmtpReport(opts, callback);
 ```
 
 ### Parameters
@@ -265,15 +253,12 @@ var opts = {
   'messageId': "messageId_example", // String | Filter on a specific message id
   'templateId': 789 // Number | Filter on a specific template id
 };
+apiInstance.getEmailEventReport(opts).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getEmailEventReport(opts, callback);
 ```
 
 ### Parameters
@@ -331,15 +316,12 @@ var opts = {
   'days': 56, // Number | Number of days in the past including today (positive integer). Not compatible with 'startDate' and 'endDate'
   'tag': "tag_example" // String | Tag of the emails
 };
+apiInstance.getSmtpReport(opts).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getSmtpReport(opts, callback);
 ```
 
 ### Parameters
@@ -387,15 +369,12 @@ var apiInstance = new SendinBlueApi.SMTPApi();
 
 var templateId = 789; // Number | id of the template
 
+apiInstance.getSmtpTemplate(templateId).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getSmtpTemplate(templateId, callback);
 ```
 
 ### Parameters
@@ -441,15 +420,12 @@ var opts = {
   'limit': 50, // Number | Number of documents returned per page
   'offset': 0 // Number | Index of the first document in the page
 };
+apiInstance.getSmtpTemplates(opts).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getSmtpTemplates(opts, callback);
 ```
 
 ### Parameters
@@ -494,15 +470,12 @@ var apiInstance = new SendinBlueApi.SMTPApi();
 
 var uuid = "uuid_example"; // String | Unique id of the transactional email that has been sent to a particular contact
 
+apiInstance.getTransacEmailContent(uuid).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getTransacEmailContent(uuid, callback);
 ```
 
 ### Parameters
@@ -552,15 +525,12 @@ var opts = {
   'startDate': "startDate_example", // String | Mandatory if endDate is used. Starting date (YYYY-MM-DD) from which you want to fetch the list. Maximum time period that can be selected is one month.
   'endDate': new Date("2013-10-20") // Date | Mandatory if startDate is used. Ending date (YYYY-MM-DD) till which you want to fetch the list. Maximum time period that can be selected is one month.
 };
+apiInstance.getTransacEmailsList(opts).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getTransacEmailsList(opts, callback);
 ```
 
 ### Parameters
@@ -611,15 +581,12 @@ var templateId = 789; // Number | Id of the template
 
 var sendEmail = new SendinBlueApi.SendEmail(); // SendEmail | 
 
+apiInstance.sendTemplate(templateId, sendEmail).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.sendTemplate(templateId, sendEmail, callback);
 ```
 
 ### Parameters
@@ -665,15 +632,12 @@ var templateId = 789; // Number | Id of the template
 
 var sendTestEmail = new SendinBlueApi.SendTestEmail(); // SendTestEmail | 
 
+apiInstance.sendTestTemplate(templateId, sendTestEmail).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.sendTestTemplate(templateId, sendTestEmail, callback);
 ```
 
 ### Parameters
@@ -717,15 +681,12 @@ var apiInstance = new SendinBlueApi.SMTPApi();
 
 var sendSmtpEmail = new SendinBlueApi.SendSmtpEmail(); // SendSmtpEmail | Values to send a transactional email
 
+apiInstance.sendTransacEmail(sendSmtpEmail).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.sendTransacEmail(sendSmtpEmail, callback);
 ```
 
 ### Parameters
@@ -770,15 +731,12 @@ var templateId = 789; // Number | id of the template
 
 var smtpTemplate = new SendinBlueApi.UpdateSmtpTemplate(); // UpdateSmtpTemplate | values to update in transactional email template
 
+apiInstance.updateSmtpTemplate(templateId, smtpTemplate).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.updateSmtpTemplate(templateId, smtpTemplate, callback);
 ```
 
 ### Parameters

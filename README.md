@@ -105,15 +105,12 @@ api-key.apiKey = "YOUR API KEY"
 //api-key.apiKeyPrefix['api-key'] = "Token"
 
 var api = new SendinBlueApi.AccountApi()
+api.getAccount().then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-api.getAccount(callback);
 
 ```
 

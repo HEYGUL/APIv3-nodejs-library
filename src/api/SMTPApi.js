@@ -48,21 +48,13 @@
     this.apiClient = apiClient || ApiClient.instance;
 
 
-    /**
-     * Callback function to receive the result of the createSmtpTemplate operation.
-     * @callback module:api/SMTPApi~createSmtpTemplateCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/CreateModel} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Create a transactional email template
      * @param {module:model/CreateSmtpTemplate} smtpTemplate values to update in transactional email template
-     * @param {module:api/SMTPApi~createSmtpTemplateCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/CreateModel}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/CreateModel} and HTTP response
      */
-    this.createSmtpTemplate = function(smtpTemplate, callback) {
+    this.createSmtpTemplateWithHttpInfo = function(smtpTemplate) {
       var postBody = smtpTemplate;
 
       // verify the required parameter 'smtpTemplate' is set
@@ -90,26 +82,31 @@
       return this.apiClient.callApi(
         '/smtp/templates', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the deleteHardbounces operation.
-     * @callback module:api/SMTPApi~deleteHardbouncesCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Create a transactional email template
+     * @param {module:model/CreateSmtpTemplate} smtpTemplate values to update in transactional email template
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/CreateModel}
      */
+    this.createSmtpTemplate = function(smtpTemplate) {
+      return this.createSmtpTemplateWithHttpInfo(smtpTemplate)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Delete hardbounces
      * Delete hardbounces. To use carefully (e.g. in case of temporary ISP failures)
      * @param {Object} opts Optional parameters
      * @param {module:model/DeleteHardbounces} opts.deleteHardbounces values to delete hardbounces
-     * @param {module:api/SMTPApi~deleteHardbouncesCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.deleteHardbounces = function(opts, callback) {
+    this.deleteHardbouncesWithHttpInfo = function(opts) {
       opts = opts || {};
       var postBody = opts['deleteHardbounces'];
 
@@ -133,24 +130,31 @@
       return this.apiClient.callApi(
         '/smtp/deleteHardbounces', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the deleteSmtpTemplate operation.
-     * @callback module:api/SMTPApi~deleteSmtpTemplateCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Delete hardbounces
+     * Delete hardbounces. To use carefully (e.g. in case of temporary ISP failures)
+     * @param {Object} opts Optional parameters
+     * @param {module:model/DeleteHardbounces} opts.deleteHardbounces values to delete hardbounces
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.deleteHardbounces = function(opts) {
+      return this.deleteHardbouncesWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Delete an inactive transactional email template
      * @param {Number} templateId id of the template
-     * @param {module:api/SMTPApi~deleteSmtpTemplateCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.deleteSmtpTemplate = function(templateId, callback) {
+    this.deleteSmtpTemplateWithHttpInfo = function(templateId) {
       var postBody = null;
 
       // verify the required parameter 'templateId' is set
@@ -179,17 +183,22 @@
       return this.apiClient.callApi(
         '/smtp/templates/{templateId}', 'DELETE',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getAggregatedSmtpReport operation.
-     * @callback module:api/SMTPApi~getAggregatedSmtpReportCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetAggregatedReport} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Delete an inactive transactional email template
+     * @param {Number} templateId id of the template
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.deleteSmtpTemplate = function(templateId) {
+      return this.deleteSmtpTemplateWithHttpInfo(templateId)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get your transactional email activity aggregated over a period of time
@@ -198,10 +207,9 @@
      * @param {String} opts.endDate Mandatory if startDate is used. Ending date of the report (YYYY-MM-DD). Must be greater than equal to startDate
      * @param {Number} opts.days Number of days in the past including today (positive integer). Not compatible with &#39;startDate&#39; and &#39;endDate&#39;
      * @param {String} opts.tag Tag of the emails
-     * @param {module:api/SMTPApi~getAggregatedSmtpReportCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetAggregatedReport}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetAggregatedReport} and HTTP response
      */
-    this.getAggregatedSmtpReport = function(opts, callback) {
+    this.getAggregatedSmtpReportWithHttpInfo = function(opts) {
       opts = opts || {};
       var postBody = null;
 
@@ -229,17 +237,26 @@
       return this.apiClient.callApi(
         '/smtp/statistics/aggregatedReport', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getEmailEventReport operation.
-     * @callback module:api/SMTPApi~getEmailEventReportCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetEmailEventReport} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get your transactional email activity aggregated over a period of time
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.startDate Mandatory if endDate is used. Starting date of the report (YYYY-MM-DD). Must be lower than equal to endDate
+     * @param {String} opts.endDate Mandatory if startDate is used. Ending date of the report (YYYY-MM-DD). Must be greater than equal to startDate
+     * @param {Number} opts.days Number of days in the past including today (positive integer). Not compatible with &#39;startDate&#39; and &#39;endDate&#39;
+     * @param {String} opts.tag Tag of the emails
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetAggregatedReport}
      */
+    this.getAggregatedSmtpReport = function(opts) {
+      return this.getAggregatedSmtpReportWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get all your transactional email activity (unaggregated events)
@@ -254,10 +271,9 @@
      * @param {String} opts.tags Filter the report for tags (serialized and urlencoded array)
      * @param {String} opts.messageId Filter on a specific message id
      * @param {Number} opts.templateId Filter on a specific template id
-     * @param {module:api/SMTPApi~getEmailEventReportCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetEmailEventReport}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetEmailEventReport} and HTTP response
      */
-    this.getEmailEventReport = function(opts, callback) {
+    this.getEmailEventReportWithHttpInfo = function(opts) {
       opts = opts || {};
       var postBody = null;
 
@@ -291,17 +307,32 @@
       return this.apiClient.callApi(
         '/smtp/statistics/events', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getSmtpReport operation.
-     * @callback module:api/SMTPApi~getSmtpReportCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetReports} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get all your transactional email activity (unaggregated events)
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.limit Number limitation for the result returned (default to 50)
+     * @param {Number} opts.offset Beginning point in the list to retrieve from. (default to 0)
+     * @param {String} opts.startDate Mandatory if endDate is used. Starting date of the report (YYYY-MM-DD). Must be lower than equal to endDate
+     * @param {String} opts.endDate Mandatory if startDate is used. Ending date of the report (YYYY-MM-DD). Must be greater than equal to startDate
+     * @param {Number} opts.days Number of days in the past including today (positive integer). Not compatible with &#39;startDate&#39; and &#39;endDate&#39;
+     * @param {String} opts.email Filter the report for a specific email addresses
+     * @param {module:model/String} opts.event Filter the report for a specific event type
+     * @param {String} opts.tags Filter the report for tags (serialized and urlencoded array)
+     * @param {String} opts.messageId Filter on a specific message id
+     * @param {Number} opts.templateId Filter on a specific template id
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetEmailEventReport}
      */
+    this.getEmailEventReport = function(opts) {
+      return this.getEmailEventReportWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get your transactional email activity aggregated per day
@@ -312,10 +343,9 @@
      * @param {String} opts.endDate Mandatory if startDate is used. Ending date of the report (YYYY-MM-DD)
      * @param {Number} opts.days Number of days in the past including today (positive integer). Not compatible with &#39;startDate&#39; and &#39;endDate&#39;
      * @param {String} opts.tag Tag of the emails
-     * @param {module:api/SMTPApi~getSmtpReportCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetReports}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetReports} and HTTP response
      */
-    this.getSmtpReport = function(opts, callback) {
+    this.getSmtpReportWithHttpInfo = function(opts) {
       opts = opts || {};
       var postBody = null;
 
@@ -345,25 +375,35 @@
       return this.apiClient.callApi(
         '/smtp/statistics/reports', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getSmtpTemplate operation.
-     * @callback module:api/SMTPApi~getSmtpTemplateCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetSmtpTemplateOverview} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get your transactional email activity aggregated per day
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.limit Number of documents returned per page (default to 50)
+     * @param {Number} opts.offset Index of the first document on the page (default to 0)
+     * @param {String} opts.startDate Mandatory if endDate is used. Starting date of the report (YYYY-MM-DD)
+     * @param {String} opts.endDate Mandatory if startDate is used. Ending date of the report (YYYY-MM-DD)
+     * @param {Number} opts.days Number of days in the past including today (positive integer). Not compatible with &#39;startDate&#39; and &#39;endDate&#39;
+     * @param {String} opts.tag Tag of the emails
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetReports}
      */
+    this.getSmtpReport = function(opts) {
+      return this.getSmtpReportWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Returns the template informations
      * @param {Number} templateId id of the template
-     * @param {module:api/SMTPApi~getSmtpTemplateCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetSmtpTemplateOverview}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetSmtpTemplateOverview} and HTTP response
      */
-    this.getSmtpTemplate = function(templateId, callback) {
+    this.getSmtpTemplateWithHttpInfo = function(templateId) {
       var postBody = null;
 
       // verify the required parameter 'templateId' is set
@@ -392,17 +432,22 @@
       return this.apiClient.callApi(
         '/smtp/templates/{templateId}', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getSmtpTemplates operation.
-     * @callback module:api/SMTPApi~getSmtpTemplatesCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetSmtpTemplates} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Returns the template informations
+     * @param {Number} templateId id of the template
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetSmtpTemplateOverview}
      */
+    this.getSmtpTemplate = function(templateId) {
+      return this.getSmtpTemplateWithHttpInfo(templateId)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get the list of transactional email templates
@@ -410,10 +455,9 @@
      * @param {Boolean} opts.templateStatus Filter on the status of the template. Active &#x3D; true, inactive &#x3D; false
      * @param {Number} opts.limit Number of documents returned per page (default to 50)
      * @param {Number} opts.offset Index of the first document in the page (default to 0)
-     * @param {module:api/SMTPApi~getSmtpTemplatesCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetSmtpTemplates}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetSmtpTemplates} and HTTP response
      */
-    this.getSmtpTemplates = function(opts, callback) {
+    this.getSmtpTemplatesWithHttpInfo = function(opts) {
       opts = opts || {};
       var postBody = null;
 
@@ -440,25 +484,32 @@
       return this.apiClient.callApi(
         '/smtp/templates', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getTransacEmailContent operation.
-     * @callback module:api/SMTPApi~getTransacEmailContentCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetTransacEmailContent} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get the list of transactional email templates
+     * @param {Object} opts Optional parameters
+     * @param {Boolean} opts.templateStatus Filter on the status of the template. Active &#x3D; true, inactive &#x3D; false
+     * @param {Number} opts.limit Number of documents returned per page (default to 50)
+     * @param {Number} opts.offset Index of the first document in the page (default to 0)
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetSmtpTemplates}
      */
+    this.getSmtpTemplates = function(opts) {
+      return this.getSmtpTemplatesWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get the personalized content of a sent transactional email
      * @param {String} uuid Unique id of the transactional email that has been sent to a particular contact
-     * @param {module:api/SMTPApi~getTransacEmailContentCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetTransacEmailContent}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetTransacEmailContent} and HTTP response
      */
-    this.getTransacEmailContent = function(uuid, callback) {
+    this.getTransacEmailContentWithHttpInfo = function(uuid) {
       var postBody = null;
 
       // verify the required parameter 'uuid' is set
@@ -487,17 +538,22 @@
       return this.apiClient.callApi(
         '/smtp/emails/{uuid}', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getTransacEmailsList operation.
-     * @callback module:api/SMTPApi~getTransacEmailsListCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetTransacEmailsList} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get the personalized content of a sent transactional email
+     * @param {String} uuid Unique id of the transactional email that has been sent to a particular contact
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetTransacEmailContent}
      */
+    this.getTransacEmailContent = function(uuid) {
+      return this.getTransacEmailContentWithHttpInfo(uuid)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get the list of transactional emails on the basis of allowed filters
@@ -508,10 +564,9 @@
      * @param {String} opts.messageId Mandatory if templateId and email are not passed in query filters. Message ID of the transactional email sent.
      * @param {String} opts.startDate Mandatory if endDate is used. Starting date (YYYY-MM-DD) from which you want to fetch the list. Maximum time period that can be selected is one month.
      * @param {Date} opts.endDate Mandatory if startDate is used. Ending date (YYYY-MM-DD) till which you want to fetch the list. Maximum time period that can be selected is one month.
-     * @param {module:api/SMTPApi~getTransacEmailsListCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetTransacEmailsList}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetTransacEmailsList} and HTTP response
      */
-    this.getTransacEmailsList = function(opts, callback) {
+    this.getTransacEmailsListWithHttpInfo = function(opts) {
       opts = opts || {};
       var postBody = null;
 
@@ -540,27 +595,37 @@
       return this.apiClient.callApi(
         '/smtp/emails', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the sendTemplate operation.
-     * @callback module:api/SMTPApi~sendTemplateCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/SendTemplateEmail} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get the list of transactional emails on the basis of allowed filters
+     * This endpoint will show the list of emails for past 30 days by default. To retrieve emails before that time, please pass startDate and endDate in query filters.
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.email Mandatory if templateId and messageId are not passed in query filters. Email address to which transactional email has been sent.
+     * @param {Number} opts.templateId Mandatory if email and messageId are not passed in query filters. Id of the template that was used to compose transactional email.
+     * @param {String} opts.messageId Mandatory if templateId and email are not passed in query filters. Message ID of the transactional email sent.
+     * @param {String} opts.startDate Mandatory if endDate is used. Starting date (YYYY-MM-DD) from which you want to fetch the list. Maximum time period that can be selected is one month.
+     * @param {Date} opts.endDate Mandatory if startDate is used. Ending date (YYYY-MM-DD) till which you want to fetch the list. Maximum time period that can be selected is one month.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetTransacEmailsList}
      */
+    this.getTransacEmailsList = function(opts) {
+      return this.getTransacEmailsListWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Send a template
      * This endpoint is deprecated. Prefer v3/smtp/email instead.
      * @param {Number} templateId Id of the template
      * @param {module:model/SendEmail} sendEmail 
-     * @param {module:api/SMTPApi~sendTemplateCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/SendTemplateEmail}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/SendTemplateEmail} and HTTP response
      */
-    this.sendTemplate = function(templateId, sendEmail, callback) {
+    this.sendTemplateWithHttpInfo = function(templateId, sendEmail) {
       var postBody = sendEmail;
 
       // verify the required parameter 'templateId' is set
@@ -594,25 +659,32 @@
       return this.apiClient.callApi(
         '/smtp/templates/{templateId}/send', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the sendTestTemplate operation.
-     * @callback module:api/SMTPApi~sendTestTemplateCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Send a template
+     * This endpoint is deprecated. Prefer v3/smtp/email instead.
+     * @param {Number} templateId Id of the template
+     * @param {module:model/SendEmail} sendEmail 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/SendTemplateEmail}
      */
+    this.sendTemplate = function(templateId, sendEmail) {
+      return this.sendTemplateWithHttpInfo(templateId, sendEmail)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Send a template to your test list
      * @param {Number} templateId Id of the template
      * @param {module:model/SendTestEmail} sendTestEmail 
-     * @param {module:api/SMTPApi~sendTestTemplateCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.sendTestTemplate = function(templateId, sendTestEmail, callback) {
+    this.sendTestTemplateWithHttpInfo = function(templateId, sendTestEmail) {
       var postBody = sendTestEmail;
 
       // verify the required parameter 'templateId' is set
@@ -646,25 +718,30 @@
       return this.apiClient.callApi(
         '/smtp/templates/{templateId}/sendTest', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the sendTransacEmail operation.
-     * @callback module:api/SMTPApi~sendTransacEmailCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/CreateSmtpEmail} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Send a template to your test list
+     * @param {Number} templateId Id of the template
+     * @param {module:model/SendTestEmail} sendTestEmail 
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.sendTestTemplate = function(templateId, sendTestEmail) {
+      return this.sendTestTemplateWithHttpInfo(templateId, sendTestEmail)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Send a transactional email
      * @param {module:model/SendSmtpEmail} sendSmtpEmail Values to send a transactional email
-     * @param {module:api/SMTPApi~sendTransacEmailCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/CreateSmtpEmail}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/CreateSmtpEmail} and HTTP response
      */
-    this.sendTransacEmail = function(sendSmtpEmail, callback) {
+    this.sendTransacEmailWithHttpInfo = function(sendSmtpEmail) {
       var postBody = sendSmtpEmail;
 
       // verify the required parameter 'sendSmtpEmail' is set
@@ -692,25 +769,30 @@
       return this.apiClient.callApi(
         '/smtp/email', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the updateSmtpTemplate operation.
-     * @callback module:api/SMTPApi~updateSmtpTemplateCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Send a transactional email
+     * @param {module:model/SendSmtpEmail} sendSmtpEmail Values to send a transactional email
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/CreateSmtpEmail}
      */
+    this.sendTransacEmail = function(sendSmtpEmail) {
+      return this.sendTransacEmailWithHttpInfo(sendSmtpEmail)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Updates a transactional email templates
      * @param {Number} templateId id of the template
      * @param {module:model/UpdateSmtpTemplate} smtpTemplate values to update in transactional email template
-     * @param {module:api/SMTPApi~updateSmtpTemplateCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.updateSmtpTemplate = function(templateId, smtpTemplate, callback) {
+    this.updateSmtpTemplateWithHttpInfo = function(templateId, smtpTemplate) {
       var postBody = smtpTemplate;
 
       // verify the required parameter 'templateId' is set
@@ -744,8 +826,21 @@
       return this.apiClient.callApi(
         '/smtp/templates/{templateId}', 'PUT',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
+    }
+
+    /**
+     * Updates a transactional email templates
+     * @param {Number} templateId id of the template
+     * @param {module:model/UpdateSmtpTemplate} smtpTemplate values to update in transactional email template
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     */
+    this.updateSmtpTemplate = function(templateId, smtpTemplate) {
+      return this.updateSmtpTemplateWithHttpInfo(templateId, smtpTemplate)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
   };
 

@@ -37,15 +37,12 @@ var apiInstance = new SendinBlueApi.EmailCampaignsApi();
 
 var emailCampaigns = new SendinBlueApi.CreateEmailCampaign(); // CreateEmailCampaign | Values to create a campaign
 
+apiInstance.createEmailCampaign(emailCampaigns).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.createEmailCampaign(emailCampaigns, callback);
 ```
 
 ### Parameters
@@ -88,15 +85,12 @@ var apiInstance = new SendinBlueApi.EmailCampaignsApi();
 
 var campaignId = 789; // Number | id of the campaign
 
+apiInstance.deleteEmailCampaign(campaignId).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.deleteEmailCampaign(campaignId, callback);
 ```
 
 ### Parameters
@@ -142,15 +136,12 @@ var campaignId = 789; // Number | Id of the campaign
 var opts = { 
   'recipientExport': new SendinBlueApi.EmailExportRecipients() // EmailExportRecipients | Values to send for a recipient export request
 };
+apiInstance.emailExportRecipients(campaignId, opts).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.emailExportRecipients(campaignId, opts, callback);
 ```
 
 ### Parameters
@@ -194,15 +185,12 @@ var apiInstance = new SendinBlueApi.EmailCampaignsApi();
 
 var campaignId = 789; // Number | Id of the campaign
 
+apiInstance.getEmailCampaign(campaignId).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getEmailCampaign(campaignId, callback);
 ```
 
 ### Parameters
@@ -251,15 +239,12 @@ var opts = {
   'limit': 500, // Number | Number of documents per page
   'offset': 0 // Number | Index of the first document in the page
 };
+apiInstance.getEmailCampaigns(opts).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getEmailCampaigns(opts, callback);
 ```
 
 ### Parameters
@@ -307,15 +292,12 @@ var apiInstance = new SendinBlueApi.EmailCampaignsApi();
 
 var campaignId = 789; // Number | Id of the campaign
 
+apiInstance.sendEmailCampaignNow(campaignId).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.sendEmailCampaignNow(campaignId, callback);
 ```
 
 ### Parameters
@@ -362,15 +344,12 @@ var campaignId = 789; // Number | Id of the campaign
 
 var sendReport = new SendinBlueApi.SendReport(); // SendReport | Values for send a report
 
+apiInstance.sendReport(campaignId, sendReport).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.sendReport(campaignId, sendReport, callback);
 ```
 
 ### Parameters
@@ -416,15 +395,12 @@ var campaignId = 789; // Number | Id of the campaign
 
 var emailTo = new SendinBlueApi.SendTestEmail(); // SendTestEmail | 
 
+apiInstance.sendTestEmail(campaignId, emailTo).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.sendTestEmail(campaignId, emailTo, callback);
 ```
 
 ### Parameters
@@ -470,15 +446,12 @@ var campaignId = 789; // Number | Id of the campaign
 
 var status = new SendinBlueApi.UpdateCampaignStatus(); // UpdateCampaignStatus | Status of the campaign
 
+apiInstance.updateCampaignStatus(campaignId, status).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.updateCampaignStatus(campaignId, status, callback);
 ```
 
 ### Parameters
@@ -524,15 +497,12 @@ var campaignId = 789; // Number | Id of the campaign
 
 var emailCampaign = new SendinBlueApi.UpdateEmailCampaign(); // UpdateEmailCampaign | Values to update a campaign
 
+apiInstance.updateEmailCampaign(campaignId, emailCampaign).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.updateEmailCampaign(campaignId, emailCampaign, callback);
 ```
 
 ### Parameters

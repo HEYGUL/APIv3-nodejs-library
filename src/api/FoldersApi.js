@@ -48,21 +48,13 @@
     this.apiClient = apiClient || ApiClient.instance;
 
 
-    /**
-     * Callback function to receive the result of the createFolder operation.
-     * @callback module:api/FoldersApi~createFolderCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/CreateModel} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Create a folder
      * @param {module:model/CreateUpdateFolder} createFolder Name of the folder
-     * @param {module:api/FoldersApi~createFolderCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/CreateModel}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/CreateModel} and HTTP response
      */
-    this.createFolder = function(createFolder, callback) {
+    this.createFolderWithHttpInfo = function(createFolder) {
       var postBody = createFolder;
 
       // verify the required parameter 'createFolder' is set
@@ -90,24 +82,29 @@
       return this.apiClient.callApi(
         '/contacts/folders', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the deleteFolder operation.
-     * @callback module:api/FoldersApi~deleteFolderCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Create a folder
+     * @param {module:model/CreateUpdateFolder} createFolder Name of the folder
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/CreateModel}
      */
+    this.createFolder = function(createFolder) {
+      return this.createFolderWithHttpInfo(createFolder)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Delete a folder (and all its lists)
      * @param {Number} folderId Id of the folder
-     * @param {module:api/FoldersApi~deleteFolderCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.deleteFolder = function(folderId, callback) {
+    this.deleteFolderWithHttpInfo = function(folderId) {
       var postBody = null;
 
       // verify the required parameter 'folderId' is set
@@ -136,25 +133,29 @@
       return this.apiClient.callApi(
         '/contacts/folders/{folderId}', 'DELETE',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getFolder operation.
-     * @callback module:api/FoldersApi~getFolderCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetFolder} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Delete a folder (and all its lists)
+     * @param {Number} folderId Id of the folder
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.deleteFolder = function(folderId) {
+      return this.deleteFolderWithHttpInfo(folderId)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Returns folder details
      * @param {Number} folderId id of the folder
-     * @param {module:api/FoldersApi~getFolderCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetFolder}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetFolder} and HTTP response
      */
-    this.getFolder = function(folderId, callback) {
+    this.getFolderWithHttpInfo = function(folderId) {
       var postBody = null;
 
       // verify the required parameter 'folderId' is set
@@ -183,17 +184,22 @@
       return this.apiClient.callApi(
         '/contacts/folders/{folderId}', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getFolderLists operation.
-     * @callback module:api/FoldersApi~getFolderListsCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetFolderLists} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Returns folder details
+     * @param {Number} folderId id of the folder
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetFolder}
      */
+    this.getFolder = function(folderId) {
+      return this.getFolderWithHttpInfo(folderId)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get the lists in a folder
@@ -201,10 +207,9 @@
      * @param {Object} opts Optional parameters
      * @param {Number} opts.limit Number of documents per page (default to 10)
      * @param {Number} opts.offset Index of the first document of the page (default to 0)
-     * @param {module:api/FoldersApi~getFolderListsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetFolderLists}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetFolderLists} and HTTP response
      */
-    this.getFolderLists = function(folderId, opts, callback) {
+    this.getFolderListsWithHttpInfo = function(folderId, opts) {
       opts = opts || {};
       var postBody = null;
 
@@ -236,26 +241,33 @@
       return this.apiClient.callApi(
         '/contacts/folders/{folderId}/lists', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getFolders operation.
-     * @callback module:api/FoldersApi~getFoldersCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetFolders} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get the lists in a folder
+     * @param {Number} folderId Id of the folder
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.limit Number of documents per page (default to 10)
+     * @param {Number} opts.offset Index of the first document of the page (default to 0)
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetFolderLists}
      */
+    this.getFolderLists = function(folderId, opts) {
+      return this.getFolderListsWithHttpInfo(folderId, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get all the folders
      * @param {Number} limit Number of documents per page
      * @param {Number} offset Index of the first document of the page
-     * @param {module:api/FoldersApi~getFoldersCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetFolders}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetFolders} and HTTP response
      */
-    this.getFolders = function(limit, offset, callback) {
+    this.getFoldersWithHttpInfo = function(limit, offset) {
       var postBody = null;
 
       // verify the required parameter 'limit' is set
@@ -290,25 +302,31 @@
       return this.apiClient.callApi(
         '/contacts/folders', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the updateFolder operation.
-     * @callback module:api/FoldersApi~updateFolderCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Get all the folders
+     * @param {Number} limit Number of documents per page
+     * @param {Number} offset Index of the first document of the page
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetFolders}
      */
+    this.getFolders = function(limit, offset) {
+      return this.getFoldersWithHttpInfo(limit, offset)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Update a contact folder
      * @param {Number} folderId Id of the folder
      * @param {module:model/CreateUpdateFolder} updateFolder Name of the folder
-     * @param {module:api/FoldersApi~updateFolderCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.updateFolder = function(folderId, updateFolder, callback) {
+    this.updateFolderWithHttpInfo = function(folderId, updateFolder) {
       var postBody = updateFolder;
 
       // verify the required parameter 'folderId' is set
@@ -342,8 +360,21 @@
       return this.apiClient.callApi(
         '/contacts/folders/{folderId}', 'PUT',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
+    }
+
+    /**
+     * Update a contact folder
+     * @param {Number} folderId Id of the folder
+     * @param {module:model/CreateUpdateFolder} updateFolder Name of the folder
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     */
+    this.updateFolder = function(folderId, updateFolder) {
+      return this.updateFolderWithHttpInfo(folderId, updateFolder)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
   };
 

@@ -25,15 +25,12 @@ api-key.apiKey = 'YOUR API KEY';
 //api-key.apiKeyPrefix = 'Token';
 
 var apiInstance = new SendinBlueApi.AccountApi();
+apiInstance.getAccount().then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getAccount(callback);
 ```
 
 ### Parameters

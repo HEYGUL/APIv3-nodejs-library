@@ -48,22 +48,14 @@
     this.apiClient = apiClient || ApiClient.instance;
 
 
-    /**
-     * Callback function to receive the result of the createSender operation.
-     * @callback module:api/SendersApi~createSenderCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/CreateSenderModel} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Create a new sender
      * @param {Object} opts Optional parameters
      * @param {module:model/CreateSender} opts.sender sender&#39;s name
-     * @param {module:api/SendersApi~createSenderCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/CreateSenderModel}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/CreateSenderModel} and HTTP response
      */
-    this.createSender = function(opts, callback) {
+    this.createSenderWithHttpInfo = function(opts) {
       opts = opts || {};
       var postBody = opts['sender'];
 
@@ -87,24 +79,30 @@
       return this.apiClient.callApi(
         '/senders', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the deleteSender operation.
-     * @callback module:api/SendersApi~deleteSenderCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Create a new sender
+     * @param {Object} opts Optional parameters
+     * @param {module:model/CreateSender} opts.sender sender&#39;s name
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/CreateSenderModel}
      */
+    this.createSender = function(opts) {
+      return this.createSenderWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Delete a sender
      * @param {Number} senderId Id of the sender
-     * @param {module:api/SendersApi~deleteSenderCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.deleteSender = function(senderId, callback) {
+    this.deleteSenderWithHttpInfo = function(senderId) {
       var postBody = null;
 
       // verify the required parameter 'senderId' is set
@@ -133,24 +131,28 @@
       return this.apiClient.callApi(
         '/senders/{senderId}', 'DELETE',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getIps operation.
-     * @callback module:api/SendersApi~getIpsCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetIps} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Delete a sender
+     * @param {Number} senderId Id of the sender
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.deleteSender = function(senderId) {
+      return this.deleteSenderWithHttpInfo(senderId)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Return all the dedicated IPs for your account
-     * @param {module:api/SendersApi~getIpsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetIps}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetIps} and HTTP response
      */
-    this.getIps = function(callback) {
+    this.getIpsWithHttpInfo = function() {
       var postBody = null;
 
 
@@ -173,25 +175,28 @@
       return this.apiClient.callApi(
         '/senders/ips', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getIpsFromSender operation.
-     * @callback module:api/SendersApi~getIpsFromSenderCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetIpsFromSender} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Return all the dedicated IPs for your account
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetIps}
      */
+    this.getIps = function() {
+      return this.getIpsWithHttpInfo()
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Return all the dedicated IPs for a sender
      * @param {Number} senderId Id of the sender
-     * @param {module:api/SendersApi~getIpsFromSenderCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetIpsFromSender}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetIpsFromSender} and HTTP response
      */
-    this.getIpsFromSender = function(senderId, callback) {
+    this.getIpsFromSenderWithHttpInfo = function(senderId) {
       var postBody = null;
 
       // verify the required parameter 'senderId' is set
@@ -220,27 +225,31 @@
       return this.apiClient.callApi(
         '/senders/{senderId}/ips', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getSenders operation.
-     * @callback module:api/SendersApi~getSendersCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetSendersList} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Return all the dedicated IPs for a sender
+     * @param {Number} senderId Id of the sender
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetIpsFromSender}
      */
+    this.getIpsFromSender = function(senderId) {
+      return this.getIpsFromSenderWithHttpInfo(senderId)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get the list of all your senders
      * @param {Object} opts Optional parameters
      * @param {String} opts.ip Filter your senders for a specific ip (available for dedicated IP usage only)
      * @param {String} opts.domain Filter your senders for a specific domain
-     * @param {module:api/SendersApi~getSendersCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetSendersList}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetSendersList} and HTTP response
      */
-    this.getSenders = function(opts, callback) {
+    this.getSendersWithHttpInfo = function(opts) {
       opts = opts || {};
       var postBody = null;
 
@@ -266,26 +275,33 @@
       return this.apiClient.callApi(
         '/senders', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the updateSender operation.
-     * @callback module:api/SendersApi~updateSenderCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Get the list of all your senders
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.ip Filter your senders for a specific ip (available for dedicated IP usage only)
+     * @param {String} opts.domain Filter your senders for a specific domain
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetSendersList}
      */
+    this.getSenders = function(opts) {
+      return this.getSendersWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Update a sender
      * @param {Number} senderId Id of the sender
      * @param {Object} opts Optional parameters
      * @param {module:model/UpdateSender} opts.sender sender&#39;s name
-     * @param {module:api/SendersApi~updateSenderCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.updateSender = function(senderId, opts, callback) {
+    this.updateSenderWithHttpInfo = function(senderId, opts) {
       opts = opts || {};
       var postBody = opts['sender'];
 
@@ -315,8 +331,22 @@
       return this.apiClient.callApi(
         '/senders/{senderId}', 'PUT',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
+    }
+
+    /**
+     * Update a sender
+     * @param {Number} senderId Id of the sender
+     * @param {Object} opts Optional parameters
+     * @param {module:model/UpdateSender} opts.sender sender&#39;s name
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     */
+    this.updateSender = function(senderId, opts) {
+      return this.updateSenderWithHttpInfo(senderId, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
   };
 

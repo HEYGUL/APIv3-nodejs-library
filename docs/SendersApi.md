@@ -34,15 +34,12 @@ var apiInstance = new SendinBlueApi.SendersApi();
 var opts = { 
   'sender': new SendinBlueApi.CreateSender() // CreateSender | sender's name
 };
+apiInstance.createSender(opts).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.createSender(opts, callback);
 ```
 
 ### Parameters
@@ -85,15 +82,12 @@ var apiInstance = new SendinBlueApi.SendersApi();
 
 var senderId = 789; // Number | Id of the sender
 
+apiInstance.deleteSender(senderId).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.deleteSender(senderId, callback);
 ```
 
 ### Parameters
@@ -133,15 +127,12 @@ api-key.apiKey = 'YOUR API KEY';
 //api-key.apiKeyPrefix = 'Token';
 
 var apiInstance = new SendinBlueApi.SendersApi();
+apiInstance.getIps().then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getIps(callback);
 ```
 
 ### Parameters
@@ -181,15 +172,12 @@ var apiInstance = new SendinBlueApi.SendersApi();
 
 var senderId = 789; // Number | Id of the sender
 
+apiInstance.getIpsFromSender(senderId).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getIpsFromSender(senderId, callback);
 ```
 
 ### Parameters
@@ -234,15 +222,12 @@ var opts = {
   'ip': "ip_example", // String | Filter your senders for a specific ip (available for dedicated IP usage only)
   'domain': "domain_example" // String | Filter your senders for a specific domain
 };
+apiInstance.getSenders(opts).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getSenders(opts, callback);
 ```
 
 ### Parameters
@@ -289,15 +274,12 @@ var senderId = 789; // Number | Id of the sender
 var opts = { 
   'sender': new SendinBlueApi.UpdateSender() // UpdateSender | sender's name
 };
+apiInstance.updateSender(senderId, opts).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.updateSender(senderId, opts, callback);
 ```
 
 ### Parameters

@@ -35,15 +35,12 @@ var attributeName = "attributeName_example"; // String | Name of the attribute
 
 var createAttribute = new SendinBlueApi.CreateAttribute(); // CreateAttribute | Values to create an attribute
 
+apiInstance.createAttribute(attributeCategory, attributeName, createAttribute).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.createAttribute(attributeCategory, attributeName, createAttribute, callback);
 ```
 
 ### Parameters
@@ -90,15 +87,12 @@ var attributeCategory = "attributeCategory_example"; // String | Category of the
 
 var attributeName = "attributeName_example"; // String | Name of the existing attribute
 
+apiInstance.deleteAttribute(attributeCategory, attributeName).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.deleteAttribute(attributeCategory, attributeName, callback);
 ```
 
 ### Parameters
@@ -139,15 +133,12 @@ api-key.apiKey = 'YOUR API KEY';
 //api-key.apiKeyPrefix = 'Token';
 
 var apiInstance = new SendinBlueApi.AttributesApi();
+apiInstance.getAttributes().then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getAttributes(callback);
 ```
 
 ### Parameters
@@ -191,15 +182,12 @@ var attributeName = "attributeName_example"; // String | Name of the existing at
 
 var updateAttribute = new SendinBlueApi.UpdateAttribute(); // UpdateAttribute | Values to update an attribute
 
+apiInstance.updateAttribute(attributeCategory, attributeName, updateAttribute).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.updateAttribute(attributeCategory, attributeName, updateAttribute, callback);
 ```
 
 ### Parameters

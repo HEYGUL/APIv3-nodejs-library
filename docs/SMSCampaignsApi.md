@@ -37,15 +37,12 @@ var apiInstance = new SendinBlueApi.SMSCampaignsApi();
 
 var createSmsCampaign = new SendinBlueApi.CreateSmsCampaign(); // CreateSmsCampaign | Values to create an SMS Campaign
 
+apiInstance.createSmsCampaign(createSmsCampaign).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.createSmsCampaign(createSmsCampaign, callback);
 ```
 
 ### Parameters
@@ -88,15 +85,12 @@ var apiInstance = new SendinBlueApi.SMSCampaignsApi();
 
 var campaignId = 789; // Number | id of the SMS campaign
 
+apiInstance.deleteSmsCampaign(campaignId).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.deleteSmsCampaign(campaignId, callback);
 ```
 
 ### Parameters
@@ -139,15 +133,12 @@ var apiInstance = new SendinBlueApi.SMSCampaignsApi();
 
 var campaignId = 789; // Number | id of the SMS campaign
 
+apiInstance.getSmsCampaign(campaignId).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getSmsCampaign(campaignId, callback);
 ```
 
 ### Parameters
@@ -195,15 +186,12 @@ var opts = {
   'limit': 500, // Number | Number limitation for the result returned
   'offset': 0 // Number | Beginning point in the list to retrieve from.
 };
+apiInstance.getSmsCampaigns(opts).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getSmsCampaigns(opts, callback);
 ```
 
 ### Parameters
@@ -255,15 +243,12 @@ var campaignId = 789; // Number | id of the campaign
 var opts = { 
   'recipientExport': new SendinBlueApi.RequestSmsRecipientExport() // RequestSmsRecipientExport | Values to send for a recipient export request
 };
+apiInstance.requestSmsRecipientExport(campaignId, opts).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.requestSmsRecipientExport(campaignId, opts, callback);
 ```
 
 ### Parameters
@@ -307,15 +292,12 @@ var apiInstance = new SendinBlueApi.SMSCampaignsApi();
 
 var campaignId = 789; // Number | id of the campaign
 
+apiInstance.sendSmsCampaignNow(campaignId).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.sendSmsCampaignNow(campaignId, callback);
 ```
 
 ### Parameters
@@ -362,15 +344,12 @@ var campaignId = 789; // Number | id of the campaign
 
 var sendReport = new SendinBlueApi.SendReport(); // SendReport | Values for send a report
 
+apiInstance.sendSmsReport(campaignId, sendReport).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.sendSmsReport(campaignId, sendReport, callback);
 ```
 
 ### Parameters
@@ -416,15 +395,12 @@ var campaignId = 789; // Number | Id of the SMS campaign
 
 var phoneNumber = new SendinBlueApi.SendTestSms(); // SendTestSms | Mobile number of the recipient with the country code. This number must belong to one of your contacts in SendinBlue account and must not be blacklisted
 
+apiInstance.sendTestSms(campaignId, phoneNumber).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.sendTestSms(campaignId, phoneNumber, callback);
 ```
 
 ### Parameters
@@ -470,15 +446,12 @@ var campaignId = 789; // Number | id of the SMS campaign
 
 var updateSmsCampaign = new SendinBlueApi.UpdateSmsCampaign(); // UpdateSmsCampaign | Values to update an SMS Campaign
 
+apiInstance.updateSmsCampaign(campaignId, updateSmsCampaign).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.updateSmsCampaign(campaignId, updateSmsCampaign, callback);
 ```
 
 ### Parameters
@@ -524,15 +497,12 @@ var campaignId = 789; // Number | id of the campaign
 
 var status = new SendinBlueApi.UpdateCampaignStatus(); // UpdateCampaignStatus | Status of the campaign.
 
+apiInstance.updateSmsCampaignStatus(campaignId, status).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.updateSmsCampaignStatus(campaignId, status, callback);
 ```
 
 ### Parameters

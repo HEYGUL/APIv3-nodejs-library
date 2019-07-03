@@ -48,22 +48,14 @@
     this.apiClient = apiClient || ApiClient.instance;
 
 
-    /**
-     * Callback function to receive the result of the addContactToList operation.
-     * @callback module:api/ListsApi~addContactToListCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/PostContactInfo} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Add existing contacts to a list
      * @param {Number} listId Id of the list
      * @param {module:model/AddContactToList} contactEmails Emails addresses of the contacts
-     * @param {module:api/ListsApi~addContactToListCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/PostContactInfo}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/PostContactInfo} and HTTP response
      */
-    this.addContactToList = function(listId, contactEmails, callback) {
+    this.addContactToListWithHttpInfo = function(listId, contactEmails) {
       var postBody = contactEmails;
 
       // verify the required parameter 'listId' is set
@@ -97,25 +89,30 @@
       return this.apiClient.callApi(
         '/contacts/lists/{listId}/contacts/add', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the createList operation.
-     * @callback module:api/ListsApi~createListCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/CreateModel} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Add existing contacts to a list
+     * @param {Number} listId Id of the list
+     * @param {module:model/AddContactToList} contactEmails Emails addresses of the contacts
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/PostContactInfo}
      */
+    this.addContactToList = function(listId, contactEmails) {
+      return this.addContactToListWithHttpInfo(listId, contactEmails)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Create a list
      * @param {module:model/CreateList} createList Values to create a list
-     * @param {module:api/ListsApi~createListCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/CreateModel}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/CreateModel} and HTTP response
      */
-    this.createList = function(createList, callback) {
+    this.createListWithHttpInfo = function(createList) {
       var postBody = createList;
 
       // verify the required parameter 'createList' is set
@@ -143,24 +140,29 @@
       return this.apiClient.callApi(
         '/contacts/lists', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the deleteList operation.
-     * @callback module:api/ListsApi~deleteListCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Create a list
+     * @param {module:model/CreateList} createList Values to create a list
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/CreateModel}
      */
+    this.createList = function(createList) {
+      return this.createListWithHttpInfo(createList)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Delete a list
      * @param {Number} listId Id of the list
-     * @param {module:api/ListsApi~deleteListCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.deleteList = function(listId, callback) {
+    this.deleteListWithHttpInfo = function(listId) {
       var postBody = null;
 
       // verify the required parameter 'listId' is set
@@ -189,17 +191,22 @@
       return this.apiClient.callApi(
         '/contacts/lists/{listId}', 'DELETE',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getContactsFromList operation.
-     * @callback module:api/ListsApi~getContactsFromListCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetContacts} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Delete a list
+     * @param {Number} listId Id of the list
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.deleteList = function(listId) {
+      return this.deleteListWithHttpInfo(listId)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get the contacts in a list
@@ -208,10 +215,9 @@
      * @param {Date} opts.modifiedSince Filter (urlencoded) the contacts modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result.
      * @param {Number} opts.limit Number of documents per page (default to 50)
      * @param {Number} opts.offset Index of the first document of the page (default to 0)
-     * @param {module:api/ListsApi~getContactsFromListCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetContacts}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetContacts} and HTTP response
      */
-    this.getContactsFromList = function(listId, opts, callback) {
+    this.getContactsFromListWithHttpInfo = function(listId, opts) {
       opts = opts || {};
       var postBody = null;
 
@@ -244,17 +250,26 @@
       return this.apiClient.callApi(
         '/contacts/lists/{listId}/contacts', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getFolderLists operation.
-     * @callback module:api/ListsApi~getFolderListsCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetFolderLists} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get the contacts in a list
+     * @param {Number} listId Id of the list
+     * @param {Object} opts Optional parameters
+     * @param {Date} opts.modifiedSince Filter (urlencoded) the contacts modified after a given UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ). Prefer to pass your timezone in date-time format for accurate result.
+     * @param {Number} opts.limit Number of documents per page (default to 50)
+     * @param {Number} opts.offset Index of the first document of the page (default to 0)
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetContacts}
      */
+    this.getContactsFromList = function(listId, opts) {
+      return this.getContactsFromListWithHttpInfo(listId, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get the lists in a folder
@@ -262,10 +277,9 @@
      * @param {Object} opts Optional parameters
      * @param {Number} opts.limit Number of documents per page (default to 10)
      * @param {Number} opts.offset Index of the first document of the page (default to 0)
-     * @param {module:api/ListsApi~getFolderListsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetFolderLists}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetFolderLists} and HTTP response
      */
-    this.getFolderLists = function(folderId, opts, callback) {
+    this.getFolderListsWithHttpInfo = function(folderId, opts) {
       opts = opts || {};
       var postBody = null;
 
@@ -297,25 +311,32 @@
       return this.apiClient.callApi(
         '/contacts/folders/{folderId}/lists', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getList operation.
-     * @callback module:api/ListsApi~getListCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetExtendedList} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get the lists in a folder
+     * @param {Number} folderId Id of the folder
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.limit Number of documents per page (default to 10)
+     * @param {Number} opts.offset Index of the first document of the page (default to 0)
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetFolderLists}
      */
+    this.getFolderLists = function(folderId, opts) {
+      return this.getFolderListsWithHttpInfo(folderId, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get the details of a list
      * @param {Number} listId Id of the list
-     * @param {module:api/ListsApi~getListCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetExtendedList}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetExtendedList} and HTTP response
      */
-    this.getList = function(listId, callback) {
+    this.getListWithHttpInfo = function(listId) {
       var postBody = null;
 
       // verify the required parameter 'listId' is set
@@ -344,27 +365,31 @@
       return this.apiClient.callApi(
         '/contacts/lists/{listId}', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getLists operation.
-     * @callback module:api/ListsApi~getListsCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetLists} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get the details of a list
+     * @param {Number} listId Id of the list
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetExtendedList}
      */
+    this.getList = function(listId) {
+      return this.getListWithHttpInfo(listId)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get all the lists
      * @param {Object} opts Optional parameters
      * @param {Number} opts.limit Number of documents per page (default to 10)
      * @param {Number} opts.offset Index of the first document of the page (default to 0)
-     * @param {module:api/ListsApi~getListsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetLists}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetLists} and HTTP response
      */
-    this.getLists = function(opts, callback) {
+    this.getListsWithHttpInfo = function(opts) {
       opts = opts || {};
       var postBody = null;
 
@@ -390,26 +415,32 @@
       return this.apiClient.callApi(
         '/contacts/lists', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the removeContactFromList operation.
-     * @callback module:api/ListsApi~removeContactFromListCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/PostContactInfo} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get all the lists
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.limit Number of documents per page (default to 10)
+     * @param {Number} opts.offset Index of the first document of the page (default to 0)
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetLists}
      */
+    this.getLists = function(opts) {
+      return this.getListsWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Remove existing contacts from a list
      * @param {Number} listId Id of the list
      * @param {module:model/RemoveContactFromList} contactEmails Emails adresses of the contact
-     * @param {module:api/ListsApi~removeContactFromListCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/PostContactInfo}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/PostContactInfo} and HTTP response
      */
-    this.removeContactFromList = function(listId, contactEmails, callback) {
+    this.removeContactFromListWithHttpInfo = function(listId, contactEmails) {
       var postBody = contactEmails;
 
       // verify the required parameter 'listId' is set
@@ -443,25 +474,31 @@
       return this.apiClient.callApi(
         '/contacts/lists/{listId}/contacts/remove', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the updateList operation.
-     * @callback module:api/ListsApi~updateListCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Remove existing contacts from a list
+     * @param {Number} listId Id of the list
+     * @param {module:model/RemoveContactFromList} contactEmails Emails adresses of the contact
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/PostContactInfo}
      */
+    this.removeContactFromList = function(listId, contactEmails) {
+      return this.removeContactFromListWithHttpInfo(listId, contactEmails)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Update a list
      * @param {Number} listId Id of the list
      * @param {module:model/UpdateList} updateList Values to update a list
-     * @param {module:api/ListsApi~updateListCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.updateList = function(listId, updateList, callback) {
+    this.updateListWithHttpInfo = function(listId, updateList) {
       var postBody = updateList;
 
       // verify the required parameter 'listId' is set
@@ -495,8 +532,21 @@
       return this.apiClient.callApi(
         '/contacts/lists/{listId}', 'PUT',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
+    }
+
+    /**
+     * Update a list
+     * @param {Number} listId Id of the list
+     * @param {module:model/UpdateList} updateList Values to update a list
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     */
+    this.updateList = function(listId, updateList) {
+      return this.updateListWithHttpInfo(listId, updateList)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
   };
 

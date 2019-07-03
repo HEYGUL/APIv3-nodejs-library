@@ -39,15 +39,12 @@ var opts = {
   'event': "event_example", // String | Filter the report for specific events
   'tags': "tags_example" // String | Filter the report for specific tags passed as a serialized urlencoded array
 };
+apiInstance.getSmsEvents(opts).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getSmsEvents(opts, callback);
 ```
 
 ### Parameters
@@ -101,15 +98,12 @@ var opts = {
   'days': 56, // Number | Number of days in the past including today (positive integer). Not compatible with startDate and endDate
   'tag': "tag_example" // String | Filter on a tag
 };
+apiInstance.getTransacAggregatedSmsReport(opts).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getTransacAggregatedSmsReport(opts, callback);
 ```
 
 ### Parameters
@@ -159,15 +153,12 @@ var opts = {
   'days': 56, // Number | Number of days in the past including today (positive integer). Not compatible with 'startDate' and 'endDate'
   'tag': "tag_example" // String | Filter on a tag
 };
+apiInstance.getTransacSmsReport(opts).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getTransacSmsReport(opts, callback);
 ```
 
 ### Parameters
@@ -213,15 +204,12 @@ var apiInstance = new SendinBlueApi.TransactionalSMSApi();
 
 var sendTransacSms = new SendinBlueApi.SendTransacSms(); // SendTransacSms | Values to send a transactional SMS
 
+apiInstance.sendTransacSms(sendTransacSms).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.sendTransacSms(sendTransacSms, callback);
 ```
 
 ### Parameters

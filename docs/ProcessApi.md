@@ -29,15 +29,12 @@ var apiInstance = new SendinBlueApi.ProcessApi();
 
 var processId = 789; // Number | Id of the process
 
+apiInstance.getProcess(processId).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getProcess(processId, callback);
 ```
 
 ### Parameters
@@ -82,15 +79,12 @@ var opts = {
   'limit': 10, // Number | Number limitation for the result returned
   'offset': 0 // Number | Beginning point in the list to retrieve from.
 };
+apiInstance.getProcesses(opts).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getProcesses(opts, callback);
 ```
 
 ### Parameters

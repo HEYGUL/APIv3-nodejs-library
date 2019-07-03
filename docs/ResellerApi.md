@@ -44,15 +44,12 @@ var childAuthKey = "childAuthKey_example"; // String | auth key of reseller's ch
 
 var addCredits = new SendinBlueApi.AddCredits(); // AddCredits | Values to post to add credit to a specific child account
 
+apiInstance.addCredits(childAuthKey, addCredits).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.addCredits(childAuthKey, addCredits, callback);
 ```
 
 ### Parameters
@@ -98,15 +95,12 @@ var childAuthKey = "childAuthKey_example"; // String | auth key of reseller's ch
 
 var ip = new SendinBlueApi.ManageIp(); // ManageIp | IP to associate
 
+apiInstance.associateIpToChild(childAuthKey, ip).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.associateIpToChild(childAuthKey, ip, callback);
 ```
 
 ### Parameters
@@ -152,15 +146,12 @@ var childAuthKey = "childAuthKey_example"; // String | auth key of reseller's ch
 
 var addChildDomain = new SendinBlueApi.AddChildDomain(); // AddChildDomain | Sender domain to add for a specific child account
 
+apiInstance.createChildDomain(childAuthKey, addChildDomain).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.createChildDomain(childAuthKey, addChildDomain, callback);
 ```
 
 ### Parameters
@@ -205,15 +196,12 @@ var apiInstance = new SendinBlueApi.ResellerApi();
 var opts = { 
   'resellerChild': new SendinBlueApi.CreateChild() // CreateChild | reseller child to add
 };
+apiInstance.createResellerChild(opts).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.createResellerChild(opts, callback);
 ```
 
 ### Parameters
@@ -258,15 +246,12 @@ var childAuthKey = "childAuthKey_example"; // String | auth key of reseller's ch
 
 var domainName = "domainName_example"; // String | Pass the existing domain that needs to be deleted
 
+apiInstance.deleteChildDomain(childAuthKey, domainName).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.deleteChildDomain(childAuthKey, domainName, callback);
 ```
 
 ### Parameters
@@ -310,15 +295,12 @@ var apiInstance = new SendinBlueApi.ResellerApi();
 
 var childAuthKey = "childAuthKey_example"; // String | auth key of reseller's child
 
+apiInstance.deleteResellerChild(childAuthKey).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.deleteResellerChild(childAuthKey, callback);
 ```
 
 ### Parameters
@@ -363,15 +345,12 @@ var childAuthKey = "childAuthKey_example"; // String | auth key of reseller's ch
 
 var ip = new SendinBlueApi.ManageIp(); // ManageIp | IP to dissociate
 
+apiInstance.dissociateIpFromChild(childAuthKey, ip).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.dissociateIpFromChild(childAuthKey, ip, callback);
 ```
 
 ### Parameters
@@ -415,15 +394,12 @@ var apiInstance = new SendinBlueApi.ResellerApi();
 
 var childAuthKey = "childAuthKey_example"; // String | auth key of reseller's child
 
+apiInstance.getChildDomains(childAuthKey).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getChildDomains(childAuthKey, callback);
 ```
 
 ### Parameters
@@ -466,15 +442,12 @@ var apiInstance = new SendinBlueApi.ResellerApi();
 
 var childAuthKey = "childAuthKey_example"; // String | auth key of reseller's child
 
+apiInstance.getChildInfo(childAuthKey).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getChildInfo(childAuthKey, callback);
 ```
 
 ### Parameters
@@ -514,15 +487,12 @@ api-key.apiKey = 'YOUR API KEY';
 //api-key.apiKeyPrefix = 'Token';
 
 var apiInstance = new SendinBlueApi.ResellerApi();
+apiInstance.getResellerChilds().then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getResellerChilds(callback);
 ```
 
 ### Parameters
@@ -564,15 +534,12 @@ var apiInstance = new SendinBlueApi.ResellerApi();
 
 var childAuthKey = "childAuthKey_example"; // String | auth key of reseller's child
 
+apiInstance.getSsoToken(childAuthKey).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getSsoToken(childAuthKey, callback);
 ```
 
 ### Parameters
@@ -617,15 +584,12 @@ var childAuthKey = "childAuthKey_example"; // String | auth key of reseller's ch
 
 var removeCredits = new SendinBlueApi.RemoveCredits(); // RemoveCredits | Values to post to remove email or SMS credits from a specific child account
 
+apiInstance.removeCredits(childAuthKey, removeCredits).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.removeCredits(childAuthKey, removeCredits, callback);
 ```
 
 ### Parameters
@@ -671,15 +635,12 @@ var childAuthKey = "childAuthKey_example"; // String | auth key of reseller's ch
 
 var updateChildAccountStatus = new SendinBlueApi.UpdateChildAccountStatus(); // UpdateChildAccountStatus | values to update in child account status
 
+apiInstance.updateChildAccountStatus(childAuthKey, updateChildAccountStatus).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.updateChildAccountStatus(childAuthKey, updateChildAccountStatus, callback);
 ```
 
 ### Parameters
@@ -727,15 +688,12 @@ var domainName = "domainName_example"; // String | Pass the existing domain that
 
 var updateChildDomain = new SendinBlueApi.UpdateChildDomain(); // UpdateChildDomain | value to update for sender domain
 
+apiInstance.updateChildDomain(childAuthKey, domainName, updateChildDomain).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.updateChildDomain(childAuthKey, domainName, updateChildDomain, callback);
 ```
 
 ### Parameters
@@ -782,15 +740,12 @@ var childAuthKey = "childAuthKey_example"; // String | auth key of reseller's ch
 
 var resellerChild = new SendinBlueApi.UpdateChild(); // UpdateChild | values to update in child profile
 
+apiInstance.updateResellerChild(childAuthKey, resellerChild).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.updateResellerChild(childAuthKey, resellerChild, callback);
 ```
 
 ### Parameters

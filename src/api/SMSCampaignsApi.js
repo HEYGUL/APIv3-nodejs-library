@@ -48,21 +48,13 @@
     this.apiClient = apiClient || ApiClient.instance;
 
 
-    /**
-     * Callback function to receive the result of the createSmsCampaign operation.
-     * @callback module:api/SMSCampaignsApi~createSmsCampaignCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/CreateModel} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Creates an SMS campaign
      * @param {module:model/CreateSmsCampaign} createSmsCampaign Values to create an SMS Campaign
-     * @param {module:api/SMSCampaignsApi~createSmsCampaignCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/CreateModel}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/CreateModel} and HTTP response
      */
-    this.createSmsCampaign = function(createSmsCampaign, callback) {
+    this.createSmsCampaignWithHttpInfo = function(createSmsCampaign) {
       var postBody = createSmsCampaign;
 
       // verify the required parameter 'createSmsCampaign' is set
@@ -90,24 +82,29 @@
       return this.apiClient.callApi(
         '/smsCampaigns', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the deleteSmsCampaign operation.
-     * @callback module:api/SMSCampaignsApi~deleteSmsCampaignCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Creates an SMS campaign
+     * @param {module:model/CreateSmsCampaign} createSmsCampaign Values to create an SMS Campaign
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/CreateModel}
      */
+    this.createSmsCampaign = function(createSmsCampaign) {
+      return this.createSmsCampaignWithHttpInfo(createSmsCampaign)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Delete the SMS campaign
      * @param {Number} campaignId id of the SMS campaign
-     * @param {module:api/SMSCampaignsApi~deleteSmsCampaignCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.deleteSmsCampaign = function(campaignId, callback) {
+    this.deleteSmsCampaignWithHttpInfo = function(campaignId) {
       var postBody = null;
 
       // verify the required parameter 'campaignId' is set
@@ -136,25 +133,29 @@
       return this.apiClient.callApi(
         '/smsCampaigns/{campaignId}', 'DELETE',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getSmsCampaign operation.
-     * @callback module:api/SMSCampaignsApi~getSmsCampaignCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetSmsCampaign} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Delete the SMS campaign
+     * @param {Number} campaignId id of the SMS campaign
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.deleteSmsCampaign = function(campaignId) {
+      return this.deleteSmsCampaignWithHttpInfo(campaignId)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get an SMS campaign
      * @param {Number} campaignId id of the SMS campaign
-     * @param {module:api/SMSCampaignsApi~getSmsCampaignCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetSmsCampaign}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetSmsCampaign} and HTTP response
      */
-    this.getSmsCampaign = function(campaignId, callback) {
+    this.getSmsCampaignWithHttpInfo = function(campaignId) {
       var postBody = null;
 
       // verify the required parameter 'campaignId' is set
@@ -183,17 +184,22 @@
       return this.apiClient.callApi(
         '/smsCampaigns/{campaignId}', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getSmsCampaigns operation.
-     * @callback module:api/SMSCampaignsApi~getSmsCampaignsCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetSmsCampaigns} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get an SMS campaign
+     * @param {Number} campaignId id of the SMS campaign
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetSmsCampaign}
      */
+    this.getSmsCampaign = function(campaignId) {
+      return this.getSmsCampaignWithHttpInfo(campaignId)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Returns the informations for all your created SMS campaigns
@@ -203,10 +209,9 @@
      * @param {Date} opts.endDate Mandatory if startDate is used. Ending (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to filter the sent sms campaigns. Prefer to pass your timezone in date-time format for accurate result ( only available if either &#39;status&#39; not passed and if passed is set to &#39;sent&#39; )
      * @param {Number} opts.limit Number limitation for the result returned (default to 500)
      * @param {Number} opts.offset Beginning point in the list to retrieve from. (default to 0)
-     * @param {module:api/SMSCampaignsApi~getSmsCampaignsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetSmsCampaigns}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetSmsCampaigns} and HTTP response
      */
-    this.getSmsCampaigns = function(opts, callback) {
+    this.getSmsCampaignsWithHttpInfo = function(opts) {
       opts = opts || {};
       var postBody = null;
 
@@ -235,17 +240,27 @@
       return this.apiClient.callApi(
         '/smsCampaigns', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the requestSmsRecipientExport operation.
-     * @callback module:api/SMSCampaignsApi~requestSmsRecipientExportCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/CreatedProcessId} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Returns the informations for all your created SMS campaigns
+     * @param {Object} opts Optional parameters
+     * @param {module:model/String} opts.status Status of campaign.
+     * @param {Date} opts.startDate Mandatory if endDate is used. Starting (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to filter the sent sms campaigns. Prefer to pass your timezone in date-time format for accurate result ( only available if either &#39;status&#39; not passed and if passed is set to &#39;sent&#39; )
+     * @param {Date} opts.endDate Mandatory if startDate is used. Ending (urlencoded) UTC date-time (YYYY-MM-DDTHH:mm:ss.SSSZ) to filter the sent sms campaigns. Prefer to pass your timezone in date-time format for accurate result ( only available if either &#39;status&#39; not passed and if passed is set to &#39;sent&#39; )
+     * @param {Number} opts.limit Number limitation for the result returned (default to 500)
+     * @param {Number} opts.offset Beginning point in the list to retrieve from. (default to 0)
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetSmsCampaigns}
      */
+    this.getSmsCampaigns = function(opts) {
+      return this.getSmsCampaignsWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Exports the recipients of the specified campaign.
@@ -253,10 +268,9 @@
      * @param {Number} campaignId id of the campaign
      * @param {Object} opts Optional parameters
      * @param {module:model/RequestSmsRecipientExport} opts.recipientExport Values to send for a recipient export request
-     * @param {module:api/SMSCampaignsApi~requestSmsRecipientExportCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/CreatedProcessId}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/CreatedProcessId} and HTTP response
      */
-    this.requestSmsRecipientExport = function(campaignId, opts, callback) {
+    this.requestSmsRecipientExportWithHttpInfo = function(campaignId, opts) {
       opts = opts || {};
       var postBody = opts['recipientExport'];
 
@@ -286,24 +300,32 @@
       return this.apiClient.callApi(
         '/smsCampaigns/{campaignId}/exportRecipients', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the sendSmsCampaignNow operation.
-     * @callback module:api/SMSCampaignsApi~sendSmsCampaignNowCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Exports the recipients of the specified campaign.
+     * It returns the background process ID which on completion calls the notify URL that you have set in the input.
+     * @param {Number} campaignId id of the campaign
+     * @param {Object} opts Optional parameters
+     * @param {module:model/RequestSmsRecipientExport} opts.recipientExport Values to send for a recipient export request
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/CreatedProcessId}
      */
+    this.requestSmsRecipientExport = function(campaignId, opts) {
+      return this.requestSmsRecipientExportWithHttpInfo(campaignId, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Send your SMS campaign immediately
      * @param {Number} campaignId id of the campaign
-     * @param {module:api/SMSCampaignsApi~sendSmsCampaignNowCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.sendSmsCampaignNow = function(campaignId, callback) {
+    this.sendSmsCampaignNowWithHttpInfo = function(campaignId) {
       var postBody = null;
 
       // verify the required parameter 'campaignId' is set
@@ -332,26 +354,31 @@
       return this.apiClient.callApi(
         '/smsCampaigns/{campaignId}/sendNow', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the sendSmsReport operation.
-     * @callback module:api/SMSCampaignsApi~sendSmsReportCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Send your SMS campaign immediately
+     * @param {Number} campaignId id of the campaign
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.sendSmsCampaignNow = function(campaignId) {
+      return this.sendSmsCampaignNowWithHttpInfo(campaignId)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Send report of SMS campaigns
      * Send report of Sent and Archived campaign, to the specified email addresses, with respective data and a pdf attachment in detail.
      * @param {Number} campaignId id of the campaign
      * @param {module:model/SendReport} sendReport Values for send a report
-     * @param {module:api/SMSCampaignsApi~sendSmsReportCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.sendSmsReport = function(campaignId, sendReport, callback) {
+    this.sendSmsReportWithHttpInfo = function(campaignId, sendReport) {
       var postBody = sendReport;
 
       // verify the required parameter 'campaignId' is set
@@ -385,25 +412,32 @@
       return this.apiClient.callApi(
         '/smsCampaigns/{campaignId}/sendReport', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the sendTestSms operation.
-     * @callback module:api/SMSCampaignsApi~sendTestSmsCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Send report of SMS campaigns
+     * Send report of Sent and Archived campaign, to the specified email addresses, with respective data and a pdf attachment in detail.
+     * @param {Number} campaignId id of the campaign
+     * @param {module:model/SendReport} sendReport Values for send a report
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.sendSmsReport = function(campaignId, sendReport) {
+      return this.sendSmsReportWithHttpInfo(campaignId, sendReport)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Send an SMS
      * @param {Number} campaignId Id of the SMS campaign
      * @param {module:model/SendTestSms} phoneNumber Mobile number of the recipient with the country code. This number must belong to one of your contacts in SendinBlue account and must not be blacklisted
-     * @param {module:api/SMSCampaignsApi~sendTestSmsCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.sendTestSms = function(campaignId, phoneNumber, callback) {
+    this.sendTestSmsWithHttpInfo = function(campaignId, phoneNumber) {
       var postBody = phoneNumber;
 
       // verify the required parameter 'campaignId' is set
@@ -437,25 +471,31 @@
       return this.apiClient.callApi(
         '/smsCampaigns/{campaignId}/sendTest', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the updateSmsCampaign operation.
-     * @callback module:api/SMSCampaignsApi~updateSmsCampaignCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Send an SMS
+     * @param {Number} campaignId Id of the SMS campaign
+     * @param {module:model/SendTestSms} phoneNumber Mobile number of the recipient with the country code. This number must belong to one of your contacts in SendinBlue account and must not be blacklisted
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.sendTestSms = function(campaignId, phoneNumber) {
+      return this.sendTestSmsWithHttpInfo(campaignId, phoneNumber)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Updates an SMS campaign
      * @param {Number} campaignId id of the SMS campaign
      * @param {module:model/UpdateSmsCampaign} updateSmsCampaign Values to update an SMS Campaign
-     * @param {module:api/SMSCampaignsApi~updateSmsCampaignCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.updateSmsCampaign = function(campaignId, updateSmsCampaign, callback) {
+    this.updateSmsCampaignWithHttpInfo = function(campaignId, updateSmsCampaign) {
       var postBody = updateSmsCampaign;
 
       // verify the required parameter 'campaignId' is set
@@ -489,25 +529,31 @@
       return this.apiClient.callApi(
         '/smsCampaigns/{campaignId}', 'PUT',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the updateSmsCampaignStatus operation.
-     * @callback module:api/SMSCampaignsApi~updateSmsCampaignStatusCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Updates an SMS campaign
+     * @param {Number} campaignId id of the SMS campaign
+     * @param {module:model/UpdateSmsCampaign} updateSmsCampaign Values to update an SMS Campaign
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.updateSmsCampaign = function(campaignId, updateSmsCampaign) {
+      return this.updateSmsCampaignWithHttpInfo(campaignId, updateSmsCampaign)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Update the campaign status
      * @param {Number} campaignId id of the campaign
      * @param {module:model/UpdateCampaignStatus} status Status of the campaign.
-     * @param {module:api/SMSCampaignsApi~updateSmsCampaignStatusCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.updateSmsCampaignStatus = function(campaignId, status, callback) {
+    this.updateSmsCampaignStatusWithHttpInfo = function(campaignId, status) {
       var postBody = status;
 
       // verify the required parameter 'campaignId' is set
@@ -541,8 +587,21 @@
       return this.apiClient.callApi(
         '/smsCampaigns/{campaignId}/status', 'PUT',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
+    }
+
+    /**
+     * Update the campaign status
+     * @param {Number} campaignId id of the campaign
+     * @param {module:model/UpdateCampaignStatus} status Status of the campaign.
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     */
+    this.updateSmsCampaignStatus = function(campaignId, status) {
+      return this.updateSmsCampaignStatusWithHttpInfo(campaignId, status)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
   };
 

@@ -38,15 +38,12 @@ var listId = 789; // Number | Id of the list
 
 var contactEmails = new SendinBlueApi.AddContactToList(); // AddContactToList | Emails addresses of the contacts
 
+apiInstance.addContactToList(listId, contactEmails).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.addContactToList(listId, contactEmails, callback);
 ```
 
 ### Parameters
@@ -90,15 +87,12 @@ var apiInstance = new SendinBlueApi.ListsApi();
 
 var createList = new SendinBlueApi.CreateList(); // CreateList | Values to create a list
 
+apiInstance.createList(createList).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.createList(createList, callback);
 ```
 
 ### Parameters
@@ -141,15 +135,12 @@ var apiInstance = new SendinBlueApi.ListsApi();
 
 var listId = 789; // Number | Id of the list
 
+apiInstance.deleteList(listId).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.deleteList(listId, callback);
 ```
 
 ### Parameters
@@ -197,15 +188,12 @@ var opts = {
   'limit': 50, // Number | Number of documents per page
   'offset': 0 // Number | Index of the first document of the page
 };
+apiInstance.getContactsFromList(listId, opts).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getContactsFromList(listId, opts, callback);
 ```
 
 ### Parameters
@@ -255,15 +243,12 @@ var opts = {
   'limit': 10, // Number | Number of documents per page
   'offset': 0 // Number | Index of the first document of the page
 };
+apiInstance.getFolderLists(folderId, opts).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getFolderLists(folderId, opts, callback);
 ```
 
 ### Parameters
@@ -308,15 +293,12 @@ var apiInstance = new SendinBlueApi.ListsApi();
 
 var listId = 789; // Number | Id of the list
 
+apiInstance.getList(listId).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getList(listId, callback);
 ```
 
 ### Parameters
@@ -361,15 +343,12 @@ var opts = {
   'limit': 10, // Number | Number of documents per page
   'offset': 0 // Number | Index of the first document of the page
 };
+apiInstance.getLists(opts).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getLists(opts, callback);
 ```
 
 ### Parameters
@@ -415,15 +394,12 @@ var listId = 789; // Number | Id of the list
 
 var contactEmails = new SendinBlueApi.RemoveContactFromList(); // RemoveContactFromList | Emails adresses of the contact
 
+apiInstance.removeContactFromList(listId, contactEmails).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.removeContactFromList(listId, contactEmails, callback);
 ```
 
 ### Parameters
@@ -469,15 +445,12 @@ var listId = 789; // Number | Id of the list
 
 var updateList = new SendinBlueApi.UpdateList(); // UpdateList | Values to update a list
 
+apiInstance.updateList(listId, updateList).then(function() {
+  console.log('API called successfully.');
+}, function(error) {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.updateList(listId, updateList, callback);
 ```
 
 ### Parameters

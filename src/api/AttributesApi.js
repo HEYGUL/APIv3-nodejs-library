@@ -48,22 +48,15 @@
     this.apiClient = apiClient || ApiClient.instance;
 
 
-    /**
-     * Callback function to receive the result of the createAttribute operation.
-     * @callback module:api/AttributesApi~createAttributeCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Creates contact attribute
      * @param {module:model/String} attributeCategory Category of the attribute
      * @param {String} attributeName Name of the attribute
      * @param {module:model/CreateAttribute} createAttribute Values to create an attribute
-     * @param {module:api/AttributesApi~createAttributeCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.createAttribute = function(attributeCategory, attributeName, createAttribute, callback) {
+    this.createAttributeWithHttpInfo = function(attributeCategory, attributeName, createAttribute) {
       var postBody = createAttribute;
 
       // verify the required parameter 'attributeCategory' is set
@@ -103,25 +96,32 @@
       return this.apiClient.callApi(
         '/contacts/attributes/{attributeCategory}/{attributeName}', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the deleteAttribute operation.
-     * @callback module:api/AttributesApi~deleteAttributeCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Creates contact attribute
+     * @param {module:model/String} attributeCategory Category of the attribute
+     * @param {String} attributeName Name of the attribute
+     * @param {module:model/CreateAttribute} createAttribute Values to create an attribute
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.createAttribute = function(attributeCategory, attributeName, createAttribute) {
+      return this.createAttributeWithHttpInfo(attributeCategory, attributeName, createAttribute)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Deletes an attribute
      * @param {module:model/String} attributeCategory Category of the attribute
      * @param {String} attributeName Name of the existing attribute
-     * @param {module:api/AttributesApi~deleteAttributeCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.deleteAttribute = function(attributeCategory, attributeName, callback) {
+    this.deleteAttributeWithHttpInfo = function(attributeCategory, attributeName) {
       var postBody = null;
 
       // verify the required parameter 'attributeCategory' is set
@@ -156,24 +156,29 @@
       return this.apiClient.callApi(
         '/contacts/attributes/{attributeCategory}/{attributeName}', 'DELETE',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getAttributes operation.
-     * @callback module:api/AttributesApi~getAttributesCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetAttributes} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Deletes an attribute
+     * @param {module:model/String} attributeCategory Category of the attribute
+     * @param {String} attributeName Name of the existing attribute
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.deleteAttribute = function(attributeCategory, attributeName) {
+      return this.deleteAttributeWithHttpInfo(attributeCategory, attributeName)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Lists all attributes
-     * @param {module:api/AttributesApi~getAttributesCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetAttributes}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetAttributes} and HTTP response
      */
-    this.getAttributes = function(callback) {
+    this.getAttributesWithHttpInfo = function() {
       var postBody = null;
 
 
@@ -196,26 +201,30 @@
       return this.apiClient.callApi(
         '/contacts/attributes', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the updateAttribute operation.
-     * @callback module:api/AttributesApi~updateAttributeCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Lists all attributes
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetAttributes}
      */
+    this.getAttributes = function() {
+      return this.getAttributesWithHttpInfo()
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Updates contact attribute
      * @param {module:model/String} attributeCategory Category of the attribute
      * @param {String} attributeName Name of the existing attribute
      * @param {module:model/UpdateAttribute} updateAttribute Values to update an attribute
-     * @param {module:api/AttributesApi~updateAttributeCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.updateAttribute = function(attributeCategory, attributeName, updateAttribute, callback) {
+    this.updateAttributeWithHttpInfo = function(attributeCategory, attributeName, updateAttribute) {
       var postBody = updateAttribute;
 
       // verify the required parameter 'attributeCategory' is set
@@ -255,8 +264,22 @@
       return this.apiClient.callApi(
         '/contacts/attributes/{attributeCategory}/{attributeName}', 'PUT',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
+    }
+
+    /**
+     * Updates contact attribute
+     * @param {module:model/String} attributeCategory Category of the attribute
+     * @param {String} attributeName Name of the existing attribute
+     * @param {module:model/UpdateAttribute} updateAttribute Values to update an attribute
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     */
+    this.updateAttribute = function(attributeCategory, attributeName, updateAttribute) {
+      return this.updateAttributeWithHttpInfo(attributeCategory, attributeName, updateAttribute)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
   };
 

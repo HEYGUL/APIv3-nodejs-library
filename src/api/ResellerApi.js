@@ -48,22 +48,14 @@
     this.apiClient = apiClient || ApiClient.instance;
 
 
-    /**
-     * Callback function to receive the result of the addCredits operation.
-     * @callback module:api/ResellerApi~addCreditsCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/RemainingCreditModel} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Add Email and/or SMS credits to a specific child account
      * @param {String} childAuthKey auth key of reseller&#39;s child
      * @param {module:model/AddCredits} addCredits Values to post to add credit to a specific child account
-     * @param {module:api/ResellerApi~addCreditsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/RemainingCreditModel}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/RemainingCreditModel} and HTTP response
      */
-    this.addCredits = function(childAuthKey, addCredits, callback) {
+    this.addCreditsWithHttpInfo = function(childAuthKey, addCredits) {
       var postBody = addCredits;
 
       // verify the required parameter 'childAuthKey' is set
@@ -97,25 +89,31 @@
       return this.apiClient.callApi(
         '/reseller/children/{childAuthKey}/credits/add', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the associateIpToChild operation.
-     * @callback module:api/ResellerApi~associateIpToChildCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Add Email and/or SMS credits to a specific child account
+     * @param {String} childAuthKey auth key of reseller&#39;s child
+     * @param {module:model/AddCredits} addCredits Values to post to add credit to a specific child account
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/RemainingCreditModel}
      */
+    this.addCredits = function(childAuthKey, addCredits) {
+      return this.addCreditsWithHttpInfo(childAuthKey, addCredits)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Associate a dedicated IP to the child
      * @param {String} childAuthKey auth key of reseller&#39;s child
      * @param {module:model/ManageIp} ip IP to associate
-     * @param {module:api/ResellerApi~associateIpToChildCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.associateIpToChild = function(childAuthKey, ip, callback) {
+    this.associateIpToChildWithHttpInfo = function(childAuthKey, ip) {
       var postBody = ip;
 
       // verify the required parameter 'childAuthKey' is set
@@ -149,25 +147,31 @@
       return this.apiClient.callApi(
         '/reseller/children/{childAuthKey}/ips/associate', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the createChildDomain operation.
-     * @callback module:api/ResellerApi~createChildDomainCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Associate a dedicated IP to the child
+     * @param {String} childAuthKey auth key of reseller&#39;s child
+     * @param {module:model/ManageIp} ip IP to associate
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.associateIpToChild = function(childAuthKey, ip) {
+      return this.associateIpToChildWithHttpInfo(childAuthKey, ip)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Creates a domain for a child account
      * @param {String} childAuthKey auth key of reseller&#39;s child
      * @param {module:model/AddChildDomain} addChildDomain Sender domain to add for a specific child account
-     * @param {module:api/ResellerApi~createChildDomainCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.createChildDomain = function(childAuthKey, addChildDomain, callback) {
+    this.createChildDomainWithHttpInfo = function(childAuthKey, addChildDomain) {
       var postBody = addChildDomain;
 
       // verify the required parameter 'childAuthKey' is set
@@ -201,26 +205,31 @@
       return this.apiClient.callApi(
         '/reseller/children/{childAuthKey}/domains', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the createResellerChild operation.
-     * @callback module:api/ResellerApi~createResellerChildCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/CreateReseller} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Creates a domain for a child account
+     * @param {String} childAuthKey auth key of reseller&#39;s child
+     * @param {module:model/AddChildDomain} addChildDomain Sender domain to add for a specific child account
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.createChildDomain = function(childAuthKey, addChildDomain) {
+      return this.createChildDomainWithHttpInfo(childAuthKey, addChildDomain)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Creates a reseller child
      * @param {Object} opts Optional parameters
      * @param {module:model/CreateChild} opts.resellerChild reseller child to add
-     * @param {module:api/ResellerApi~createResellerChildCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/CreateReseller}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/CreateReseller} and HTTP response
      */
-    this.createResellerChild = function(opts, callback) {
+    this.createResellerChildWithHttpInfo = function(opts) {
       opts = opts || {};
       var postBody = opts['resellerChild'];
 
@@ -244,25 +253,31 @@
       return this.apiClient.callApi(
         '/reseller/children', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the deleteChildDomain operation.
-     * @callback module:api/ResellerApi~deleteChildDomainCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Creates a reseller child
+     * @param {Object} opts Optional parameters
+     * @param {module:model/CreateChild} opts.resellerChild reseller child to add
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/CreateReseller}
      */
+    this.createResellerChild = function(opts) {
+      return this.createResellerChildWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Deletes the sender domain of the reseller child based on the childAuthKey and domainName passed
      * @param {String} childAuthKey auth key of reseller&#39;s child
      * @param {String} domainName Pass the existing domain that needs to be deleted
-     * @param {module:api/ResellerApi~deleteChildDomainCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.deleteChildDomain = function(childAuthKey, domainName, callback) {
+    this.deleteChildDomainWithHttpInfo = function(childAuthKey, domainName) {
       var postBody = null;
 
       // verify the required parameter 'childAuthKey' is set
@@ -297,24 +312,30 @@
       return this.apiClient.callApi(
         '/reseller/children/{childAuthKey}/domains/{domainName}', 'DELETE',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the deleteResellerChild operation.
-     * @callback module:api/ResellerApi~deleteResellerChildCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Deletes the sender domain of the reseller child based on the childAuthKey and domainName passed
+     * @param {String} childAuthKey auth key of reseller&#39;s child
+     * @param {String} domainName Pass the existing domain that needs to be deleted
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.deleteChildDomain = function(childAuthKey, domainName) {
+      return this.deleteChildDomainWithHttpInfo(childAuthKey, domainName)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Deletes a single reseller child based on the childAuthKey supplied
      * @param {String} childAuthKey auth key of reseller&#39;s child
-     * @param {module:api/ResellerApi~deleteResellerChildCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.deleteResellerChild = function(childAuthKey, callback) {
+    this.deleteResellerChildWithHttpInfo = function(childAuthKey) {
       var postBody = null;
 
       // verify the required parameter 'childAuthKey' is set
@@ -343,25 +364,30 @@
       return this.apiClient.callApi(
         '/reseller/children/{childAuthKey}', 'DELETE',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the dissociateIpFromChild operation.
-     * @callback module:api/ResellerApi~dissociateIpFromChildCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Deletes a single reseller child based on the childAuthKey supplied
+     * @param {String} childAuthKey auth key of reseller&#39;s child
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.deleteResellerChild = function(childAuthKey) {
+      return this.deleteResellerChildWithHttpInfo(childAuthKey)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Dissociate a dedicated IP to the child
      * @param {String} childAuthKey auth key of reseller&#39;s child
      * @param {module:model/ManageIp} ip IP to dissociate
-     * @param {module:api/ResellerApi~dissociateIpFromChildCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.dissociateIpFromChild = function(childAuthKey, ip, callback) {
+    this.dissociateIpFromChildWithHttpInfo = function(childAuthKey, ip) {
       var postBody = ip;
 
       // verify the required parameter 'childAuthKey' is set
@@ -395,25 +421,30 @@
       return this.apiClient.callApi(
         '/reseller/children/{childAuthKey}/ips/dissociate', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getChildDomains operation.
-     * @callback module:api/ResellerApi~getChildDomainsCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetChildDomains} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Dissociate a dedicated IP to the child
+     * @param {String} childAuthKey auth key of reseller&#39;s child
+     * @param {module:model/ManageIp} ip IP to dissociate
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.dissociateIpFromChild = function(childAuthKey, ip) {
+      return this.dissociateIpFromChildWithHttpInfo(childAuthKey, ip)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Gets all the sender domains of a specific child account
      * @param {String} childAuthKey auth key of reseller&#39;s child
-     * @param {module:api/ResellerApi~getChildDomainsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetChildDomains}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetChildDomains} and HTTP response
      */
-    this.getChildDomains = function(childAuthKey, callback) {
+    this.getChildDomainsWithHttpInfo = function(childAuthKey) {
       var postBody = null;
 
       // verify the required parameter 'childAuthKey' is set
@@ -442,25 +473,29 @@
       return this.apiClient.callApi(
         '/reseller/children/{childAuthKey}/domains', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getChildInfo operation.
-     * @callback module:api/ResellerApi~getChildInfoCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetChildInfo} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Gets all the sender domains of a specific child account
+     * @param {String} childAuthKey auth key of reseller&#39;s child
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetChildDomains}
      */
+    this.getChildDomains = function(childAuthKey) {
+      return this.getChildDomainsWithHttpInfo(childAuthKey)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Gets the info about a specific child account
      * @param {String} childAuthKey auth key of reseller&#39;s child
-     * @param {module:api/ResellerApi~getChildInfoCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetChildInfo}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetChildInfo} and HTTP response
      */
-    this.getChildInfo = function(childAuthKey, callback) {
+    this.getChildInfoWithHttpInfo = function(childAuthKey) {
       var postBody = null;
 
       // verify the required parameter 'childAuthKey' is set
@@ -489,24 +524,28 @@
       return this.apiClient.callApi(
         '/reseller/children/{childAuthKey}', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getResellerChilds operation.
-     * @callback module:api/ResellerApi~getResellerChildsCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetChildrenList} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Gets the info about a specific child account
+     * @param {String} childAuthKey auth key of reseller&#39;s child
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetChildInfo}
      */
+    this.getChildInfo = function(childAuthKey) {
+      return this.getChildInfoWithHttpInfo(childAuthKey)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Gets the list of all reseller&#39;s children accounts
-     * @param {module:api/ResellerApi~getResellerChildsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetChildrenList}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetChildrenList} and HTTP response
      */
-    this.getResellerChilds = function(callback) {
+    this.getResellerChildsWithHttpInfo = function() {
       var postBody = null;
 
 
@@ -529,26 +568,29 @@
       return this.apiClient.callApi(
         '/reseller/children', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getSsoToken operation.
-     * @callback module:api/ResellerApi~getSsoTokenCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetSsoToken} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Gets the list of all reseller&#39;s children accounts
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetChildrenList}
      */
+    this.getResellerChilds = function() {
+      return this.getResellerChildsWithHttpInfo()
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Get session token to access Sendinblue (SSO)
      * It returns a session [token] which will remain valid for a short period of time. A child account will be able to access a white-labeled section by using the following url pattern &#x3D;&gt; https:/email.mydomain.com/login/sso?token&#x3D;[token]
      * @param {String} childAuthKey auth key of reseller&#39;s child
-     * @param {module:api/ResellerApi~getSsoTokenCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetSsoToken}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetSsoToken} and HTTP response
      */
-    this.getSsoToken = function(childAuthKey, callback) {
+    this.getSsoTokenWithHttpInfo = function(childAuthKey) {
       var postBody = null;
 
       // verify the required parameter 'childAuthKey' is set
@@ -577,26 +619,31 @@
       return this.apiClient.callApi(
         '/reseller/children/{childAuthKey}/auth', 'GET',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the removeCredits operation.
-     * @callback module:api/ResellerApi~removeCreditsCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/RemainingCreditModel} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * Get session token to access Sendinblue (SSO)
+     * It returns a session [token] which will remain valid for a short period of time. A child account will be able to access a white-labeled section by using the following url pattern &#x3D;&gt; https:/email.mydomain.com/login/sso?token&#x3D;[token]
+     * @param {String} childAuthKey auth key of reseller&#39;s child
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetSsoToken}
      */
+    this.getSsoToken = function(childAuthKey) {
+      return this.getSsoTokenWithHttpInfo(childAuthKey)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Remove Email and/or SMS credits from a specific child account
      * @param {String} childAuthKey auth key of reseller&#39;s child
      * @param {module:model/RemoveCredits} removeCredits Values to post to remove email or SMS credits from a specific child account
-     * @param {module:api/ResellerApi~removeCreditsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/RemainingCreditModel}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/RemainingCreditModel} and HTTP response
      */
-    this.removeCredits = function(childAuthKey, removeCredits, callback) {
+    this.removeCreditsWithHttpInfo = function(childAuthKey, removeCredits) {
       var postBody = removeCredits;
 
       // verify the required parameter 'childAuthKey' is set
@@ -630,25 +677,31 @@
       return this.apiClient.callApi(
         '/reseller/children/{childAuthKey}/credits/remove', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the updateChildAccountStatus operation.
-     * @callback module:api/ResellerApi~updateChildAccountStatusCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Remove Email and/or SMS credits from a specific child account
+     * @param {String} childAuthKey auth key of reseller&#39;s child
+     * @param {module:model/RemoveCredits} removeCredits Values to post to remove email or SMS credits from a specific child account
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/RemainingCreditModel}
      */
+    this.removeCredits = function(childAuthKey, removeCredits) {
+      return this.removeCreditsWithHttpInfo(childAuthKey, removeCredits)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Updates infos of reseller&#39;s child account status based on the childAuthKey supplied
      * @param {String} childAuthKey auth key of reseller&#39;s child
      * @param {module:model/UpdateChildAccountStatus} updateChildAccountStatus values to update in child account status
-     * @param {module:api/ResellerApi~updateChildAccountStatusCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.updateChildAccountStatus = function(childAuthKey, updateChildAccountStatus, callback) {
+    this.updateChildAccountStatusWithHttpInfo = function(childAuthKey, updateChildAccountStatus) {
       var postBody = updateChildAccountStatus;
 
       // verify the required parameter 'childAuthKey' is set
@@ -682,26 +735,32 @@
       return this.apiClient.callApi(
         '/reseller/children/{childAuthKey}/accountStatus', 'PUT',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the updateChildDomain operation.
-     * @callback module:api/ResellerApi~updateChildDomainCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Updates infos of reseller&#39;s child account status based on the childAuthKey supplied
+     * @param {String} childAuthKey auth key of reseller&#39;s child
+     * @param {module:model/UpdateChildAccountStatus} updateChildAccountStatus values to update in child account status
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.updateChildAccountStatus = function(childAuthKey, updateChildAccountStatus) {
+      return this.updateChildAccountStatusWithHttpInfo(childAuthKey, updateChildAccountStatus)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Updates the sender domain of reseller&#39;s child based on the childAuthKey and domainName passed
      * @param {String} childAuthKey auth key of reseller&#39;s child
      * @param {String} domainName Pass the existing domain that needs to be updated
      * @param {module:model/UpdateChildDomain} updateChildDomain value to update for sender domain
-     * @param {module:api/ResellerApi~updateChildDomainCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.updateChildDomain = function(childAuthKey, domainName, updateChildDomain, callback) {
+    this.updateChildDomainWithHttpInfo = function(childAuthKey, domainName, updateChildDomain) {
       var postBody = updateChildDomain;
 
       // verify the required parameter 'childAuthKey' is set
@@ -741,25 +800,32 @@
       return this.apiClient.callApi(
         '/reseller/children/{childAuthKey}/domains/{domainName}', 'PUT',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the updateResellerChild operation.
-     * @callback module:api/ResellerApi~updateResellerChildCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
+     * Updates the sender domain of reseller&#39;s child based on the childAuthKey and domainName passed
+     * @param {String} childAuthKey auth key of reseller&#39;s child
+     * @param {String} domainName Pass the existing domain that needs to be updated
+     * @param {module:model/UpdateChildDomain} updateChildDomain value to update for sender domain
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
+    this.updateChildDomain = function(childAuthKey, domainName, updateChildDomain) {
+      return this.updateChildDomainWithHttpInfo(childAuthKey, domainName, updateChildDomain)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * Updates infos of reseller&#39;s child based on the childAuthKey supplied
      * @param {String} childAuthKey auth key of reseller&#39;s child
      * @param {module:model/UpdateChild} resellerChild values to update in child profile
-     * @param {module:api/ResellerApi~updateResellerChildCallback} callback The callback function, accepting three arguments: error, data, response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.updateResellerChild = function(childAuthKey, resellerChild, callback) {
+    this.updateResellerChildWithHttpInfo = function(childAuthKey, resellerChild) {
       var postBody = resellerChild;
 
       // verify the required parameter 'childAuthKey' is set
@@ -793,8 +859,21 @@
       return this.apiClient.callApi(
         '/reseller/children/{childAuthKey}', 'PUT',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
+    }
+
+    /**
+     * Updates infos of reseller&#39;s child based on the childAuthKey supplied
+     * @param {String} childAuthKey auth key of reseller&#39;s child
+     * @param {module:model/UpdateChild} resellerChild values to update in child profile
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+     */
+    this.updateResellerChild = function(childAuthKey, resellerChild) {
+      return this.updateResellerChildWithHttpInfo(childAuthKey, resellerChild)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
   };
 
